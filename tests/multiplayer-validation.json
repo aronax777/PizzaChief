@@ -1,0 +1,338 @@
+{
+  "passed": true,
+  "total": 81,
+  "checks": [
+    {
+      "name": "Real Studio multiplayer test API used",
+      "passed": true
+    },
+    {
+      "name": "Server independently sees both network players",
+      "passed": true
+    },
+    {
+      "name": "Leaving countdown returns remaining player to waiting",
+      "passed": true
+    },
+    {
+      "name": "initialRun: captured",
+      "passed": true
+    },
+    {
+      "name": "initialRun: two distinct real clients",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1: shared recipeId",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1: shared startedAt",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1: shared deadline",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1: full 90-second allowance",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1: clean prep on both clients",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1: identical final standings",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1: both served",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1: expected winner",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1/p1: score formula",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1/p1: server quality formula",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1/p2: score formula",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round1/p2: server quality formula",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2: shared recipeId",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2: shared startedAt",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2: shared deadline",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2: full 90-second allowance",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2: clean prep on both clients",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2: identical final standings",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2: both served",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2: expected winner",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2/p1: score formula",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2/p1: server quality formula",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2/p2: score formula",
+      "passed": true
+    },
+    {
+      "name": "initialRun/round2/p2: server quality formula",
+      "passed": true
+    },
+    {
+      "name": "initialRun: recipe rotates on rematch",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p1: one win each after rematch",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p1: progress retained",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p1: timeout finished without winner",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p1: timeout did not award a win",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p1: actual deadline reached",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p2: one win each after rematch",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p2: progress retained",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p2: timeout finished without winner",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p2: timeout did not award a win",
+      "passed": true
+    },
+    {
+      "name": "initialRun/p2: actual deadline reached",
+      "passed": true
+    },
+    {
+      "name": "finalRun: captured",
+      "passed": true
+    },
+    {
+      "name": "finalRun: two distinct real clients",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1: shared recipeId",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1: shared startedAt",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1: shared deadline",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1: full 90-second allowance",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1: clean prep on both clients",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1: identical final standings",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1: both served",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1: expected winner",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1/p1: score formula",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1/p1: server quality formula",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1/p2: score formula",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round1/p2: server quality formula",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2: shared recipeId",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2: shared startedAt",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2: shared deadline",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2: full 90-second allowance",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2: clean prep on both clients",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2: identical final standings",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2: both served",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2: expected winner",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2/p1: score formula",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2/p1: server quality formula",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2/p2: score formula",
+      "passed": true
+    },
+    {
+      "name": "finalRun/round2/p2: server quality formula",
+      "passed": true
+    },
+    {
+      "name": "finalRun: recipe rotates on rematch",
+      "passed": true
+    },
+    {
+      "name": "finalRun/p1: one win each after rematch",
+      "passed": true
+    },
+    {
+      "name": "finalRun/p1: progress retained",
+      "passed": true
+    },
+    {
+      "name": "finalRun/p2: one win each after rematch",
+      "passed": true
+    },
+    {
+      "name": "finalRun/p2: progress retained",
+      "passed": true
+    },
+    {
+      "name": "Slow service reduces speed score over real network",
+      "passed": true
+    },
+    {
+      "name": "Early finisher cannot rematch before opponent finishes",
+      "passed": true
+    },
+    {
+      "name": "p1: immediate rematch queued on finished room",
+      "passed": true
+    },
+    {
+      "name": "p1: rematch message is current",
+      "passed": true
+    },
+    {
+      "name": "p2: immediate rematch queued on finished room",
+      "passed": true
+    },
+    {
+      "name": "p2: rematch message is current",
+      "passed": true
+    },
+    {
+      "name": "p1: stale countdown toast hidden",
+      "passed": true
+    },
+    {
+      "name": "p1: legacy chat hidden",
+      "passed": true
+    },
+    {
+      "name": "p2: stale countdown toast hidden",
+      "passed": true
+    },
+    {
+      "name": "p2: legacy chat hidden",
+      "passed": true
+    }
+  ],
+  "sourceHashes": {
+    "src/client/PizzaClient.client.luau": "24b6ff10da4fc7bd77ccdd989369acd775335b7073c9f69fdf9a760351e79132",
+    "src/server/GameServer.server.luau": "897cfcf56f59c629d4f097def635f7899f42e55c7730e65ee90489fc8fb61789",
+    "src/server/ProfileStore.luau": "56159b3e8721f24c23919b8ebf59132ff06aea792577b25b034f4f5f0012855f",
+    "src/shared/GameRules.luau": "fac49557dc398b9ec0735deb18c0456b94cda80d37f671d81ddeacafa5c8e8f8",
+    "src/shared/Recipes.luau": "2375888a1ab47923f9ae2361e64db50ad76d128d34f6f619766fdbaa0c654932",
+    "src/studio/BuildWorld.luau": "595e624eca4f512435bb910aa5ef688f029c321e8fb7756da7ce152b2ba3cd90"
+  }
+}

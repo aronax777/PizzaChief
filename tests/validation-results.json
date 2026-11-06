@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-06",
+  "environment": "Roblox Studio Server execute_luau",
+  "mode": "isolated actual server source with mocked Players/remotes/clock/Heartbeat and real Recipes module",
+  "actualMultiClientNetworkingTested": false,
+  "passed": 19,
+  "failed": 0,
+  "idleBakeQuality": 86.52607492269834,
+  "controlledBakeQuality": 99.80997074387152,
+  "checks": [
+    "Invalid ingredients, premature serve and empty bake rejected",
+    "Non-finite oven input rejected",
+    "Practice completes through real scoring module",
+    "Active oven control improves baking over idle power",
+    "One chef waits without starting",
+    "Second chef starts countdown",
+    "Leaving countdown cancels it",
+    "Two chefs share recipe, start and deadline",
+    "Late arrival queues without entering current round",
+    "Active participant cannot switch modes to evade round",
+    "Serving locks result while another chef remains active",
+    "Deadline scores unfinished pizza zero and declares correct winner",
+    "Queued chef enters fresh room after results interval",
+    "Completed standings persist after live room resets",
+    "Next competition starts independently",
+    "Disconnect forfeits without blocking remaining chef",
+    "Deadline auto-serves ready pizza and excludes forfeited chef",
+    "Battle replay queues with accurate membership",
+    "Queued chef can cancel cleanly"
+  ],
+  "recipeRuntimeChecks": {
+    "exactProfiles": 20,
+    "emptyPizzaCases": 20,
+    "passed": true
+  },
+  "soloUiPlaythrough": {
+    "actualMouseIngredients": true,
+    "heatKeyboardInput": true,
+    "heatSliderInput": true,
+    "serveButton": true,
+    "resultTotal": 96.58439945946418
+  },
+  "finalBuildSmoke": {
+    "reopenedFromDisk": true,
+    "geometryParts": 782,
+    "recipeCount": 20,
+    "menuToPractice": true,
+    "scriptRuntimeErrors": 0,
+    "engineWarnings": [
+      "Transient Player:Move called before character exists"
+    ]
+  },
+  "artifactSha256": "bc130358d365e6a76d0008272d8b6054fb3de194d173548aa32113e87aaa7dcc",
+  "viewportsChecked": [
+    "Average Laptop landscape",
+    "iPad Pro M5 13in landscape",
+    "Default Studio viewport"
+  ]
+}

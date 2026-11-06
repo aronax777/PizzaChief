@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-06",
+  "studio": "PizzaChief.rbxlx",
+  "realClientServerState": true,
+  "inputs": "UI start/next/menu/record actions; automated client ingredient/heat inputs during three complete orders",
+  "shift": {
+    "ordersCompleted": 3,
+    "score": 299.8167771500333,
+    "xp": 215,
+    "rank": 2,
+    "stars": 9,
+    "unlockedRecipes": 8,
+    "combo": 3
+  },
+  "verified": [
+    "Main menu starts Shift",
+    "All three contract phases render",
+    "NextOrder retains accumulated shift score",
+    "Second order raises rank and unlocks two career recipes",
+    "Third order completes shift and awards completion bonus",
+    "Result challenge card opens and closes",
+    "Returning to menu retains XP and restores neutral timer",
+    "Career passport shows per-recipe mastery",
+    "Exported V2 place reopens with six modules and visible geometry",
+    "Reopened place starts Daily challenge through UI",
+    "Final client cold-starts at menu without script errors"
+  ],
+  "exportedPlaceSha256": "957b2e9feb1d2d566d5d4a4cdaac65103b0e66a6290006732713a2d14db59340",
+  "clientSha256": "6d12fc792ce2c6712f5ae245f95a8bd39ddad933a52303e30e5de4aed036a221",
+  "realTwoClientNetworkTested": false,
+  "cloudDataStoreTested": false,
+  "externalInvitesSent": false,
+  "studioProgressPersistence": "session only"
+}

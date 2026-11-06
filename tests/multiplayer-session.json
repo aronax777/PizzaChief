@@ -1,0 +1,3868 @@
+{
+  "method": "StudioTestService.ExecuteMultiplayerTestAsync(2)",
+  "realNetworking": true,
+  "clientActions": "UI join/rematch/leave; automated real client RemoteEvents for cooking",
+  "initialRun": {
+    "p1": {
+      "Ready1": {
+        "heat": 0.664668679983366,
+        "bakeQuality": 99.7899820198036,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995895.63402,
+        "deadline": 1793995985.63402,
+        "serverNow": 1793995914.383197,
+        "mode": "competition",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "basil": 1,
+          "mozzarella": 2
+        },
+        "phase": "ready",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793995985.63402,
+          "startsAt": 1793995895.63402,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "Щойно з печі! Подавай піцу шефу Луці.",
+        "temperature": 430.815690568411,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "profile": {
+          "totalStars": 0,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": [],
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 0,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 0,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": [],
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0,
+          "version": 2
+        }
+      },
+      "Start1": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995895.63402,
+        "deadline": 1793995985.63402,
+        "serverNow": 1793995895.700679,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793995985.63402,
+          "startsAt": 1793995895.63402,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 0,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": [],
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 0,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 0,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": [],
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0,
+          "version": 2
+        }
+      },
+      "Result1": {
+        "heat": 0.664668679983366,
+        "bakeQuality": 99.7899820198036,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995895.63402,
+        "deadline": 1793995985.63402,
+        "serverNow": 1793995914.71611,
+        "mode": "competition",
+        "result": {
+          "total": 99.94119496554502,
+          "bakeScore": 99.7899820198036,
+          "elapsed": 18.9,
+          "personalBest": true,
+          "feedback": "Bellissimo! Збалансована начинка, золотиста скоринка й чудова подача.",
+          "recipeScore": 100,
+          "recipeName": "Margherita",
+          "speed": 100,
+          "previousBest": 0,
+          "reward": {
+            "stars": 3,
+            "nextCombo": 1,
+            "xp": 45,
+            "combo": 1,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Новий особистий рекорд!"
+          },
+          "delta": 99.94119496554502,
+          "quality": 99.92649370693127
+        },
+        "phase": "result",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "basil": 1,
+          "mozzarella": 2
+        },
+        "combo": 1,
+        "profile": {
+          "totalStars": 3,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94119496554502
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 45,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.45,
+          "version": 2
+        },
+        "temperature": 430.815690568411,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 100,
+              "total": 99.94119496554502,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 18.932776927947998,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 99.92649370693127
+            },
+            "2": {
+              "speed": 100,
+              "total": 73.0700548082996,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 18.96555185317993,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 66.3375685103745
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793995985.63402,
+          "startsAt": 1793995895.63402,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "winner": {
+            "total": 99.94119496554502,
+            "name": "Player1",
+            "userId": -1
+          },
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "message": ""
+      },
+      "Identity": {
+        "players": 2,
+        "name": "Player1",
+        "id": -1
+      },
+      "Ready2": {
+        "heat": 0,
+        "bakeQuality": 3.0046185421159333,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995946.982546,
+        "deadline": 1793996036.982546,
+        "serverNow": 1793995965.714219,
+        "mode": "competition",
+        "ingredients": {
+          "olive_oil": 1,
+          "garlic": 1,
+          "tomato": 2,
+          "oregano": 1
+        },
+        "phase": "ready",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996036.982546,
+          "startsAt": 1793995946.982546,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "Щойно з печі! Подавай піцу шефу Луці.",
+        "temperature": 254.73386311351027,
+        "combo": 1,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "profile": {
+          "totalStars": 3,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94119496554502
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 45,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.45,
+          "version": 2
+        }
+      },
+      "Result2": {
+        "heat": 0,
+        "bakeQuality": 3.0046185421159333,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995946.982546,
+        "deadline": 1793996036.982546,
+        "serverNow": 1793995966.047663,
+        "mode": "competition",
+        "result": {
+          "total": 72.84129319179246,
+          "bakeScore": 3.0046185421159333,
+          "elapsed": 18.9,
+          "personalBest": true,
+          "feedback": "Гарні інгредієнти. Тримай бігунок печі в зеленій зоні.",
+          "recipeScore": 100,
+          "recipeName": "Marinara",
+          "speed": 100,
+          "previousBest": 0,
+          "reward": {
+            "stars": 1,
+            "nextCombo": 0,
+            "xp": 29,
+            "combo": 0,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Новий особистий рекорд!"
+          },
+          "delta": 72.84129319179246,
+          "quality": 66.05161648974058
+        },
+        "phase": "result",
+        "ingredients": {
+          "olive_oil": 1,
+          "garlic": 1,
+          "tomato": 2,
+          "oregano": 1
+        },
+        "combo": 0,
+        "profile": {
+          "totalStars": 4,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94119496554502
+            },
+            "marinara": {
+              "stars": 1,
+              "score": 72.84129319179246
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 74,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 2,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.74,
+          "version": 2
+        },
+        "temperature": 254.73386311351027,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 100,
+              "total": 99.94076212003712,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 18.89832091331482,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 99.9259526500464
+            },
+            "2": {
+              "speed": 100,
+              "total": 72.84129319179246,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 18.898533821105957,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 66.05161648974058
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996036.982546,
+          "startsAt": 1793995946.982546,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "winner": {
+            "total": 99.94076212003712,
+            "name": "Player2",
+            "userId": -2
+          },
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "message": ""
+      },
+      "Start2": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995946.982546,
+        "deadline": 1793996036.982546,
+        "serverNow": 1793995947.015778,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996036.982546,
+          "startsAt": 1793995946.982546,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 1,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 3,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94119496554502
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 45,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.45,
+          "version": 2
+        }
+      },
+      "TimeoutResult": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "pepperoni",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996002.113227,
+        "deadline": 1793996092.113227,
+        "serverNow": 1793996092.259373,
+        "mode": "competition",
+        "result": {
+          "total": 0,
+          "bakeScore": 0,
+          "elapsed": 90,
+          "personalBest": false,
+          "feedback": "Час вичерпано! Потрібно завершити випікання й подати піцу до кінця раунду.",
+          "recipeScore": 0,
+          "recipeName": "Pepperoni",
+          "speed": 0,
+          "previousBest": 0,
+          "reward": {
+            "stars": 0,
+            "nextCombo": 0,
+            "xp": 0,
+            "combo": 0,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Нова спроба — новий шанс. Перевір рецепт і жар."
+          },
+          "delta": 0,
+          "quality": 0
+        },
+        "phase": "result",
+        "ingredients": [],
+        "combo": 0,
+        "profile": {
+          "totalStars": 4,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94119496554502
+            },
+            "marinara": {
+              "stars": 1,
+              "score": 72.84129319179246
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 74,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 2,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.74,
+          "version": 2
+        },
+        "temperature": 20,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 0,
+              "total": 0,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 90.01276421546936,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 0
+            },
+            "2": {
+              "speed": 0,
+              "total": 0,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 90.01282501220703,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 0
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996092.113227,
+          "startsAt": 1793996002.113227,
+          "recipeId": "pepperoni",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "message": ""
+      },
+      "TimeoutStart": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "pepperoni",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996002.113227,
+        "deadline": 1793996092.113227,
+        "serverNow": 1793996002.295889,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996092.113227,
+          "startsAt": 1793996002.113227,
+          "recipeId": "pepperoni",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 4,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94119496554502
+            },
+            "marinara": {
+              "stars": 1,
+              "score": 72.84129319179246
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 74,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 2,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.74,
+          "version": 2
+        }
+      }
+    },
+    "p2": {
+      "Ready1": {
+        "heat": 0,
+        "bakeQuality": 3.8216243153556935,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995895.63402,
+        "deadline": 1793995985.63402,
+        "serverNow": 1793995914.432892,
+        "mode": "competition",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "basil": 1,
+          "mozzarella": 2
+        },
+        "phase": "ready",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793995985.63402,
+          "startsAt": 1793995895.63402,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "Щойно з печі! Подавай піцу шефу Луці.",
+        "temperature": 254.7293254855947,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "profile": {
+          "totalStars": 0,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": [],
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 0,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 0,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": [],
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0,
+          "version": 2
+        }
+      },
+      "Start1": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995895.63402,
+        "deadline": 1793995985.63402,
+        "serverNow": 1793995895.650219,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793995985.63402,
+          "startsAt": 1793995895.63402,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 0,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": [],
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 0,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 0,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": [],
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0,
+          "version": 2
+        }
+      },
+      "Result1": {
+        "heat": 0,
+        "bakeQuality": 3.8216243153556935,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995895.63402,
+        "deadline": 1793995985.63402,
+        "serverNow": 1793995914.766441,
+        "mode": "competition",
+        "result": {
+          "total": 73.0700548082996,
+          "bakeScore": 3.8216243153556935,
+          "elapsed": 19,
+          "personalBest": true,
+          "feedback": "Гарні інгредієнти. Тримай бігунок печі в зеленій зоні.",
+          "recipeScore": 100,
+          "recipeName": "Margherita",
+          "speed": 100,
+          "previousBest": 0,
+          "reward": {
+            "stars": 1,
+            "nextCombo": 0,
+            "xp": 29,
+            "combo": 0,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Новий особистий рекорд!"
+          },
+          "delta": 73.0700548082996,
+          "quality": 66.3375685103745
+        },
+        "phase": "result",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "basil": 1,
+          "mozzarella": 2
+        },
+        "combo": 0,
+        "profile": {
+          "totalStars": 1,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.0700548082996
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 29,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.29,
+          "version": 2
+        },
+        "temperature": 254.7293254855947,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 100,
+              "total": 99.94119496554502,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 18.932776927947998,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 99.92649370693127
+            },
+            "2": {
+              "speed": 100,
+              "total": 73.0700548082996,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 18.96555185317993,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 66.3375685103745
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793995985.63402,
+          "startsAt": 1793995895.63402,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "winner": {
+            "total": 99.94119496554502,
+            "name": "Player1",
+            "userId": -1
+          },
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "message": ""
+      },
+      "Identity": {
+        "players": 2,
+        "name": "Player2",
+        "id": -2
+      },
+      "Ready2": {
+        "heat": 0.6983442009150724,
+        "bakeQuality": 99.78843614298971,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995946.982546,
+        "deadline": 1793996036.982546,
+        "serverNow": 1793995965.714149,
+        "mode": "competition",
+        "ingredients": {
+          "olive_oil": 1,
+          "garlic": 1,
+          "tomato": 2,
+          "oregano": 1
+        },
+        "phase": "ready",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996036.982546,
+          "startsAt": 1793995946.982546,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "Щойно з печі! Подавай піцу шефу Луці.",
+        "temperature": 440.7857902109328,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "profile": {
+          "totalStars": 1,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.0700548082996
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 29,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.29,
+          "version": 2
+        }
+      },
+      "Result2": {
+        "heat": 0.6983442009150724,
+        "bakeQuality": 99.78843614298971,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995946.982546,
+        "deadline": 1793996036.982546,
+        "serverNow": 1793995966.047586,
+        "mode": "competition",
+        "result": {
+          "total": 99.94076212003712,
+          "bakeScore": 99.78843614298971,
+          "elapsed": 18.9,
+          "personalBest": true,
+          "feedback": "Bellissimo! Збалансована начинка, золотиста скоринка й чудова подача.",
+          "recipeScore": 100,
+          "recipeName": "Marinara",
+          "speed": 100,
+          "previousBest": 0,
+          "reward": {
+            "stars": 3,
+            "nextCombo": 1,
+            "xp": 45,
+            "combo": 1,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Новий особистий рекорд!"
+          },
+          "delta": 99.94076212003712,
+          "quality": 99.9259526500464
+        },
+        "phase": "result",
+        "ingredients": {
+          "olive_oil": 1,
+          "garlic": 1,
+          "tomato": 2,
+          "oregano": 1
+        },
+        "combo": 1,
+        "profile": {
+          "totalStars": 4,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.0700548082996
+            },
+            "marinara": {
+              "stars": 3,
+              "score": 99.94076212003712
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 74,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 2,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.74,
+          "version": 2
+        },
+        "temperature": 440.7857902109328,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 100,
+              "total": 99.94076212003712,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 18.89832091331482,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 99.9259526500464
+            },
+            "2": {
+              "speed": 100,
+              "total": 72.84129319179246,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 18.898533821105957,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 66.05161648974058
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996036.982546,
+          "startsAt": 1793995946.982546,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "winner": {
+            "total": 99.94076212003712,
+            "name": "Player2",
+            "userId": -2
+          },
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "message": ""
+      },
+      "Start2": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793995946.982546,
+        "deadline": 1793996036.982546,
+        "serverNow": 1793995946.998591,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996036.982546,
+          "startsAt": 1793995946.982546,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 1,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.0700548082996
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 29,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.29,
+          "version": 2
+        }
+      },
+      "TimeoutResult": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "pepperoni",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996002.113227,
+        "deadline": 1793996092.113227,
+        "serverNow": 1793996092.326138,
+        "mode": "competition",
+        "result": {
+          "total": 0,
+          "bakeScore": 0,
+          "elapsed": 90,
+          "personalBest": false,
+          "feedback": "Час вичерпано! Потрібно завершити випікання й подати піцу до кінця раунду.",
+          "recipeScore": 0,
+          "recipeName": "Pepperoni",
+          "speed": 0,
+          "previousBest": 0,
+          "reward": {
+            "stars": 0,
+            "nextCombo": 0,
+            "xp": 0,
+            "combo": 0,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Нова спроба — новий шанс. Перевір рецепт і жар."
+          },
+          "delta": 0,
+          "quality": 0
+        },
+        "phase": "result",
+        "ingredients": [],
+        "combo": 0,
+        "profile": {
+          "totalStars": 4,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.0700548082996
+            },
+            "marinara": {
+              "stars": 3,
+              "score": 99.94076212003712
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 74,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 2,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.74,
+          "version": 2
+        },
+        "temperature": 20,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 0,
+              "total": 0,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 90.01276421546936,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 0
+            },
+            "2": {
+              "speed": 0,
+              "total": 0,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 90.01282501220703,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 0
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996092.113227,
+          "startsAt": 1793996002.113227,
+          "recipeId": "pepperoni",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "message": ""
+      },
+      "TimeoutStart": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "pepperoni",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996002.113227,
+        "deadline": 1793996092.113227,
+        "serverNow": 1793996002.363553,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996092.113227,
+          "startsAt": 1793996002.113227,
+          "recipeId": "pepperoni",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 1,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 4,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.0700548082996
+            },
+            "marinara": {
+              "stars": 3,
+              "score": 99.94076212003712
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 74,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 2,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.74,
+          "version": 2
+        }
+      }
+    }
+  },
+  "finalRun": {
+    "p1": {
+      "Ready1": {
+        "heat": 0.6608313567201202,
+        "bakeQuality": 99.78793159309218,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996361.270145,
+        "deadline": 1793996451.270145,
+        "serverNow": 1793996380.085911,
+        "mode": "competition",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "basil": 1,
+          "mozzarella": 2
+        },
+        "phase": "ready",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996451.270145,
+          "startsAt": 1793996361.270145,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "Щойно з печі! Подавай піцу шефу Луці.",
+        "temperature": 430.7761623079128,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "profile": {
+          "totalStars": 0,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": [],
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 0,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 0,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": [],
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0,
+          "version": 2
+        }
+      },
+      "Ready2": {
+        "heat": 0,
+        "bakeQuality": 3.0063830353929775,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996402.335284,
+        "deadline": 1793996492.335284,
+        "serverNow": 1793996446.133533,
+        "mode": "competition",
+        "ingredients": {
+          "olive_oil": 1,
+          "garlic": 1,
+          "tomato": 2,
+          "oregano": 1
+        },
+        "phase": "ready",
+        "room": {
+          "players": {
+            "1": {
+              "speed": 100,
+              "total": 99.94074273223191,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 18.949198961257935,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 99.92592841528987
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996492.335284,
+          "startsAt": 1793996402.335284,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 254.726080480168,
+        "combo": 1,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "profile": {
+          "totalStars": 3,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94062084606581
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 45,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.45,
+          "version": 2
+        }
+      },
+      "Start1": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996361.270145,
+        "deadline": 1793996451.270145,
+        "serverNow": 1793996361.303314,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996451.270145,
+          "startsAt": 1793996361.270145,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 0,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": [],
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 0,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 0,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": [],
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0,
+          "version": 2
+        }
+      },
+      "Start2": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996402.335284,
+        "deadline": 1793996492.335284,
+        "serverNow": 1793996402.401733,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996492.335284,
+          "startsAt": 1793996402.335284,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 1,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 3,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94062084606581
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 45,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.45,
+          "version": 2
+        }
+      },
+      "Result1": {
+        "heat": 0.6608313567201202,
+        "bakeQuality": 99.78793159309218,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996361.270145,
+        "deadline": 1793996451.270145,
+        "serverNow": 1793996380.852688,
+        "mode": "competition",
+        "result": {
+          "total": 99.94062084606581,
+          "bakeScore": 99.78793159309218,
+          "elapsed": 19,
+          "personalBest": true,
+          "feedback": "Bellissimo! Збалансована начинка, золотиста скоринка й чудова подача.",
+          "recipeScore": 100,
+          "recipeName": "Margherita",
+          "speed": 100,
+          "previousBest": 0,
+          "reward": {
+            "stars": 3,
+            "nextCombo": 1,
+            "xp": 45,
+            "combo": 1,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Новий особистий рекорд!"
+          },
+          "delta": 99.94062084606581,
+          "quality": 99.92577605758225
+        },
+        "phase": "result",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "basil": 1,
+          "mozzarella": 2
+        },
+        "combo": 1,
+        "profile": {
+          "totalStars": 3,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94062084606581
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 45,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.45,
+          "version": 2
+        },
+        "temperature": 430.7761623079128,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 100,
+              "total": 99.94062084606581,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 18.982414960861206,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 99.92577605758225
+            },
+            "2": {
+              "speed": 100,
+              "total": 73.06817666462615,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 19.016036987304688,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 66.33522083078267
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996451.270145,
+          "startsAt": 1793996361.270145,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "winner": {
+            "total": 99.94062084606581,
+            "name": "Player1",
+            "userId": -1
+          },
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "message": ""
+      },
+      "Identity": {
+        "players": 2,
+        "name": "Player1",
+        "id": -1
+      },
+      "Result2": {
+        "heat": 0,
+        "bakeQuality": 3.0063830353929775,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996402.335284,
+        "deadline": 1793996492.335284,
+        "serverNow": 1793996446.883677,
+        "mode": "competition",
+        "result": {
+          "total": 69.87243721233527,
+          "bakeScore": 3.0063830353929775,
+          "elapsed": 44,
+          "personalBest": true,
+          "feedback": "Гарні інгредієнти. Тримай бігунок печі в зеленій зоні.",
+          "recipeScore": 100,
+          "recipeName": "Marinara",
+          "speed": 85.15324981212616,
+          "previousBest": 0,
+          "reward": {
+            "stars": 1,
+            "nextCombo": 0,
+            "xp": 28,
+            "combo": 0,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Новий особистий рекорд!"
+          },
+          "delta": 69.87243721233527,
+          "quality": 66.05223406238754
+        },
+        "phase": "result",
+        "ingredients": {
+          "olive_oil": 1,
+          "garlic": 1,
+          "tomato": 2,
+          "oregano": 1
+        },
+        "combo": 0,
+        "profile": {
+          "totalStars": 4,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94062084606581
+            },
+            "marinara": {
+              "stars": 1,
+              "score": 69.87243721233527
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 73,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 2,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.73,
+          "version": 2
+        },
+        "temperature": 254.726080480168,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 100,
+              "total": 99.94074273223191,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 18.949198961257935,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 99.92592841528987
+            },
+            "2": {
+              "speed": 85.15324981212616,
+              "total": 69.87243721233527,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 43.9667649269104,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 66.05223406238754
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996492.335284,
+          "startsAt": 1793996402.335284,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "winner": {
+            "total": 99.94074273223191,
+            "name": "Player2",
+            "userId": -2
+          },
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "message": ""
+      }
+    },
+    "p2": {
+      "Ready1": {
+        "heat": 0,
+        "bakeQuality": 3.814916659379073,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996361.270145,
+        "deadline": 1793996451.270145,
+        "serverNow": 1793996380.119482,
+        "mode": "competition",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "basil": 1,
+          "mozzarella": 2
+        },
+        "phase": "ready",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996451.270145,
+          "startsAt": 1793996361.270145,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "Щойно з печі! Подавай піцу шефу Луці.",
+        "temperature": 254.72634009538393,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "profile": {
+          "totalStars": 0,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": [],
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 0,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 0,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": [],
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0,
+          "version": 2
+        }
+      },
+      "Waiting2": {
+        "state": {
+          "heat": 0.6992707998673571,
+          "bakeQuality": 99.78836690082822,
+          "recipeId": "marinara",
+          "daily": {
+            "temperatureBand": 23,
+            "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+            "id": "daily_20763",
+            "duration": 90,
+            "bonusXP": 60,
+            "name": "Виклик дня: Година пік",
+            "recipeId": "vegetarian",
+            "goal": 85,
+            "heatMultiplier": 1.15
+          },
+          "startedAt": 1793996402.335284,
+          "deadline": 1793996492.335284,
+          "serverNow": 1793996421.701194,
+          "mode": "competition",
+          "result": {
+            "total": 99.94074273223191,
+            "bakeScore": 99.78836690082822,
+            "elapsed": 18.9,
+            "personalBest": true,
+            "feedback": "Bellissimo! Збалансована начинка, золотиста скоринка й чудова подача.",
+            "recipeScore": 100,
+            "recipeName": "Marinara",
+            "speed": 100,
+            "previousBest": 0,
+            "reward": {
+              "stars": 3,
+              "nextCombo": 1,
+              "xp": 45,
+              "combo": 1,
+              "unlocked": 0,
+              "newRank": "Учень піцайоло",
+              "leveledUp": false,
+              "headline": "Новий особистий рекорд!"
+            },
+            "delta": 99.94074273223191,
+            "quality": 99.92592841528987
+          },
+          "phase": "result",
+          "ingredients": {
+            "olive_oil": 1,
+            "garlic": 1,
+            "tomato": 2,
+            "oregano": 1
+          },
+          "combo": 1,
+          "profile": {
+            "totalStars": 4,
+            "perfects": 1,
+            "bestCombo": 1,
+            "recipeBest": {
+              "margherita": {
+                "stars": 1,
+                "score": 73.06817666462615
+              },
+              "marinara": {
+                "stars": 3,
+                "score": 99.94074273223191
+              }
+            },
+            "bestShift": 0,
+            "shiftFinishes": 0,
+            "level": 1,
+            "battleWins": 0,
+            "unlockedRecipes": 6,
+            "nextXP": 100,
+            "xp": 74,
+            "dailyBest": {
+              "score": 0,
+              "day": 0
+            },
+            "completed": 2,
+            "persistence": "session",
+            "title": "Учень піцайоло",
+            "badges": {
+              "1": {
+                "id": "first_service",
+                "description": "Заверши перше вдале замовлення.",
+                "name": "Перша подача"
+              },
+              "2": {
+                "id": "golden_touch",
+                "description": "Приготуй першу піцу на три зірки.",
+                "name": "Золоті руки"
+              }
+            },
+            "dailyClears": 0,
+            "lastDailyDay": 0,
+            "progress": 0.74,
+            "version": 2
+          },
+          "temperature": 440.78301805412013,
+          "room": {
+            "players": {
+              "1": {
+                "speed": 100,
+                "total": 99.94074273223191,
+                "name": "Player2",
+                "done": true,
+                "elapsed": 18.949198961257935,
+                "forfeited": false,
+                "userId": -2,
+                "quality": 99.92592841528987
+              },
+              "2": {
+                "userId": -1,
+                "done": false,
+                "name": "Player1",
+                "forfeited": false
+              }
+            },
+            "minPlayers": 2,
+            "phase": "active",
+            "member": true,
+            "endsAt": 1793996492.335284,
+            "startsAt": 1793996402.335284,
+            "recipeId": "marinara",
+            "queuedCount": 0,
+            "queued": false,
+            "maxPlayers": 6
+          },
+          "dailyChallenge": {
+            "temperatureBand": 23,
+            "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+            "id": "daily_20763",
+            "duration": 90,
+            "bonusXP": 60,
+            "name": "Виклик дня: Година пік",
+            "recipeId": "vegetarian",
+            "goal": 85,
+            "heatMultiplier": 1.15
+          },
+          "bakeDuration": 18,
+          "bakeElapsed": 18,
+          "queued": false,
+          "message": ""
+        },
+        "againActive": false,
+        "standings": "PIZZA BATTLE / ІНШІ КУХАРІ ЩЕ ГОТУЮТЬ\n1. Player2   100 балів\n2. Player1   готує…"
+      },
+      "Start2": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996402.335284,
+        "deadline": 1793996492.335284,
+        "serverNow": 1793996402.401661,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996492.335284,
+          "startsAt": 1793996402.335284,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 1,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.06817666462615
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 29,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.29,
+          "version": 2
+        }
+      },
+      "Start1": {
+        "heat": 0.5,
+        "bakeQuality": 0,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996361.270145,
+        "deadline": 1793996451.270145,
+        "serverNow": 1793996361.320051,
+        "mode": "competition",
+        "ingredients": [],
+        "phase": "prep",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996451.270145,
+          "startsAt": 1793996361.270145,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "",
+        "temperature": 20,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 0,
+        "bakeElapsed": 0,
+        "queued": false,
+        "profile": {
+          "totalStars": 0,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": [],
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 0,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 0,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": [],
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0,
+          "version": 2
+        }
+      },
+      "Result1": {
+        "heat": 0,
+        "bakeQuality": 3.814916659379073,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996361.270145,
+        "deadline": 1793996451.270145,
+        "serverNow": 1793996380.869319,
+        "mode": "competition",
+        "result": {
+          "total": 73.06817666462615,
+          "bakeScore": 3.814916659379073,
+          "elapsed": 19,
+          "personalBest": true,
+          "feedback": "Гарні інгредієнти. Тримай бігунок печі в зеленій зоні.",
+          "recipeScore": 100,
+          "recipeName": "Margherita",
+          "speed": 100,
+          "previousBest": 0,
+          "reward": {
+            "stars": 1,
+            "nextCombo": 0,
+            "xp": 29,
+            "combo": 0,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Новий особистий рекорд!"
+          },
+          "delta": 73.06817666462615,
+          "quality": 66.33522083078267
+        },
+        "phase": "result",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "basil": 1,
+          "mozzarella": 2
+        },
+        "combo": 0,
+        "profile": {
+          "totalStars": 1,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.06817666462615
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 29,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.29,
+          "version": 2
+        },
+        "temperature": 254.72634009538393,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 100,
+              "total": 99.94062084606581,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 18.982414960861206,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 99.92577605758225
+            },
+            "2": {
+              "speed": 100,
+              "total": 73.06817666462615,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 19.016036987304688,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 66.33522083078267
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996451.270145,
+          "startsAt": 1793996361.270145,
+          "recipeId": "margherita",
+          "queuedCount": 0,
+          "winner": {
+            "total": 99.94062084606581,
+            "name": "Player1",
+            "userId": -1
+          },
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "message": ""
+      },
+      "Ready2": {
+        "heat": 0.6992707998673571,
+        "bakeQuality": 99.78836690082822,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996402.335284,
+        "deadline": 1793996492.335284,
+        "serverNow": 1793996421.11802,
+        "mode": "competition",
+        "ingredients": {
+          "olive_oil": 1,
+          "garlic": 1,
+          "tomato": 2,
+          "oregano": 1
+        },
+        "phase": "ready",
+        "room": {
+          "players": {
+            "1": {
+              "userId": -2,
+              "done": false,
+              "name": "Player2",
+              "forfeited": false
+            },
+            "2": {
+              "userId": -1,
+              "done": false,
+              "name": "Player1",
+              "forfeited": false
+            }
+          },
+          "minPlayers": 2,
+          "phase": "active",
+          "member": true,
+          "endsAt": 1793996492.335284,
+          "startsAt": 1793996402.335284,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "message": "Щойно з печі! Подавай піцу шефу Луці.",
+        "temperature": 440.78301805412013,
+        "combo": 0,
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "profile": {
+          "totalStars": 1,
+          "perfects": 0,
+          "bestCombo": 0,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.06817666462615
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 0,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 29,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.29,
+          "version": 2
+        }
+      },
+      "Identity": {
+        "players": 2,
+        "name": "Player2",
+        "id": -2
+      },
+      "Result2": {
+        "heat": 0.6992707998673571,
+        "bakeQuality": 99.78836690082822,
+        "recipeId": "marinara",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996402.335284,
+        "deadline": 1793996492.335284,
+        "serverNow": 1793996446.383639,
+        "mode": "competition",
+        "result": {
+          "total": 99.94074273223191,
+          "bakeScore": 99.78836690082822,
+          "elapsed": 18.9,
+          "personalBest": true,
+          "feedback": "Bellissimo! Збалансована начинка, золотиста скоринка й чудова подача.",
+          "recipeScore": 100,
+          "recipeName": "Marinara",
+          "speed": 100,
+          "previousBest": 0,
+          "reward": {
+            "stars": 3,
+            "nextCombo": 1,
+            "xp": 45,
+            "combo": 1,
+            "unlocked": 0,
+            "newRank": "Учень піцайоло",
+            "leveledUp": false,
+            "headline": "Новий особистий рекорд!"
+          },
+          "delta": 99.94074273223191,
+          "quality": 99.92592841528987
+        },
+        "phase": "result",
+        "ingredients": {
+          "olive_oil": 1,
+          "garlic": 1,
+          "tomato": 2,
+          "oregano": 1
+        },
+        "combo": 1,
+        "profile": {
+          "totalStars": 4,
+          "perfects": 1,
+          "bestCombo": 1,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.06817666462615
+            },
+            "marinara": {
+              "stars": 3,
+              "score": 99.94074273223191
+            }
+          },
+          "bestShift": 0,
+          "shiftFinishes": 0,
+          "level": 1,
+          "battleWins": 1,
+          "unlockedRecipes": 6,
+          "nextXP": 100,
+          "xp": 74,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 2,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "lastDailyDay": 0,
+          "progress": 0.74,
+          "version": 2
+        },
+        "temperature": 440.78301805412013,
+        "room": {
+          "players": {
+            "1": {
+              "speed": 100,
+              "total": 99.94074273223191,
+              "name": "Player2",
+              "done": true,
+              "elapsed": 18.949198961257935,
+              "forfeited": false,
+              "userId": -2,
+              "quality": 99.92592841528987
+            },
+            "2": {
+              "speed": 85.15324981212616,
+              "total": 69.87243721233527,
+              "name": "Player1",
+              "done": true,
+              "elapsed": 43.9667649269104,
+              "forfeited": false,
+              "userId": -1,
+              "quality": 66.05223406238754
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996492.335284,
+          "startsAt": 1793996402.335284,
+          "recipeId": "marinara",
+          "queuedCount": 0,
+          "winner": {
+            "total": 99.94074273223191,
+            "name": "Player2",
+            "userId": -2
+          },
+          "queued": false,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": false,
+        "message": ""
+      }
+    }
+  },
+  "finalServer": {
+    "players": {
+      "1": {
+        "name": "Player1",
+        "id": -1
+      },
+      "2": {
+        "name": "Player2",
+        "id": -2
+      }
+    },
+    "testArgs": {
+      "test": "PizzaChief-final-regression"
+    },
+    "isServer": true
+  },
+  "rematchQueueUI": {
+    "p1": {
+      "toast": "Ти в черзі на реванш. Готуємо наступний раунд…",
+      "toastVisible": true,
+      "state": {
+        "heat": 0.6608313567201202,
+        "bakeQuality": 99.78793159309218,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996361.270145,
+        "deadline": 1793996451.270145,
+        "serverNow": 1793996383.336393,
+        "mode": "competition",
+        "result": {
+          "total": 99.94062084606581,
+          "bakeScore": 99.78793159309218,
+          "elapsed": 19,
+          "personalBest": true,
+          "feedback": "Bellissimo! Збалансована начинка, золотиста скоринка й чудова подача.",
+          "reward": {
+            "stars": 3,
+            "nextCombo": 1,
+            "unlocked": 0,
+            "combo": 1,
+            "leveledUp": false,
+            "newRank": "Учень піцайоло",
+            "xp": 45,
+            "headline": "Новий особистий рекорд!"
+          },
+          "previousBest": 0,
+          "recipeName": "Margherita",
+          "speed": 100,
+          "recipeScore": 100,
+          "delta": 99.94062084606581,
+          "quality": 99.92577605758225
+        },
+        "phase": "menu",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "mozzarella": 2,
+          "basil": 1
+        },
+        "combo": 1,
+        "profile": {
+          "totalStars": 3,
+          "perfects": 1,
+          "bestCombo": 1,
+          "progress": 0.45,
+          "bestShift": 0,
+          "unlockedRecipes": 6,
+          "level": 1,
+          "battleWins": 1,
+          "lastDailyDay": 0,
+          "nextXP": 100,
+          "xp": 45,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            },
+            "2": {
+              "id": "golden_touch",
+              "description": "Приготуй першу піцу на три зірки.",
+              "name": "Золоті руки"
+            },
+            "3": {
+              "id": "battle_champion",
+              "description": "Виграй Pizza Battle.",
+              "name": "Чемпіон кухні"
+            }
+          },
+          "dailyClears": 0,
+          "shiftFinishes": 0,
+          "recipeBest": {
+            "margherita": {
+              "stars": 3,
+              "score": 99.94062084606581
+            }
+          },
+          "version": 2
+        },
+        "temperature": 430.7761623079128,
+        "room": {
+          "players": {
+            "1": {
+              "elapsed": 18.982414960861206,
+              "total": 99.94062084606581,
+              "name": "Player1",
+              "forfeited": false,
+              "speed": 100,
+              "done": true,
+              "userId": -1,
+              "quality": 99.92577605758225
+            },
+            "2": {
+              "elapsed": 19.016036987304688,
+              "total": 73.06817666462615,
+              "name": "Player2",
+              "forfeited": false,
+              "speed": 100,
+              "done": true,
+              "userId": -2,
+              "quality": 66.33522083078267
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996451.270145,
+          "startsAt": 1793996361.270145,
+          "recipeId": "margherita",
+          "queued": true,
+          "winner": {
+            "total": 99.94062084606581,
+            "name": "Player1",
+            "userId": -1
+          },
+          "queuedCount": 2,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": true,
+        "message": "Ти в черзі на наступний раунд. Поточне змагання ще триває."
+      }
+    },
+    "p2": {
+      "toast": "Ти в черзі на реванш. Готуємо наступний раунд…",
+      "toastVisible": true,
+      "state": {
+        "heat": 0,
+        "bakeQuality": 3.814916659379073,
+        "recipeId": "margherita",
+        "daily": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "startedAt": 1793996361.270145,
+        "deadline": 1793996451.270145,
+        "serverNow": 1793996383.452905,
+        "mode": "competition",
+        "result": {
+          "total": 73.06817666462615,
+          "bakeScore": 3.814916659379073,
+          "elapsed": 19,
+          "personalBest": true,
+          "feedback": "Гарні інгредієнти. Тримай бігунок печі в зеленій зоні.",
+          "reward": {
+            "stars": 1,
+            "nextCombo": 0,
+            "unlocked": 0,
+            "combo": 0,
+            "leveledUp": false,
+            "newRank": "Учень піцайоло",
+            "xp": 29,
+            "headline": "Новий особистий рекорд!"
+          },
+          "previousBest": 0,
+          "recipeName": "Margherita",
+          "speed": 100,
+          "recipeScore": 100,
+          "delta": 73.06817666462615,
+          "quality": 66.33522083078267
+        },
+        "phase": "menu",
+        "ingredients": {
+          "olive_oil": 1,
+          "tomato": 2,
+          "mozzarella": 2,
+          "basil": 1
+        },
+        "combo": 0,
+        "profile": {
+          "totalStars": 1,
+          "perfects": 0,
+          "bestCombo": 0,
+          "progress": 0.29,
+          "bestShift": 0,
+          "unlockedRecipes": 6,
+          "level": 1,
+          "battleWins": 0,
+          "lastDailyDay": 0,
+          "nextXP": 100,
+          "xp": 29,
+          "dailyBest": {
+            "score": 0,
+            "day": 0
+          },
+          "completed": 1,
+          "persistence": "session",
+          "title": "Учень піцайоло",
+          "badges": {
+            "1": {
+              "id": "first_service",
+              "description": "Заверши перше вдале замовлення.",
+              "name": "Перша подача"
+            }
+          },
+          "dailyClears": 0,
+          "shiftFinishes": 0,
+          "recipeBest": {
+            "margherita": {
+              "stars": 1,
+              "score": 73.06817666462615
+            }
+          },
+          "version": 2
+        },
+        "temperature": 254.72634009538393,
+        "room": {
+          "players": {
+            "1": {
+              "elapsed": 18.982414960861206,
+              "total": 99.94062084606581,
+              "name": "Player1",
+              "forfeited": false,
+              "speed": 100,
+              "done": true,
+              "userId": -1,
+              "quality": 99.92577605758225
+            },
+            "2": {
+              "elapsed": 19.016036987304688,
+              "total": 73.06817666462615,
+              "name": "Player2",
+              "forfeited": false,
+              "speed": 100,
+              "done": true,
+              "userId": -2,
+              "quality": 66.33522083078267
+            }
+          },
+          "minPlayers": 2,
+          "phase": "finished",
+          "member": false,
+          "endsAt": 1793996451.270145,
+          "startsAt": 1793996361.270145,
+          "recipeId": "margherita",
+          "queued": true,
+          "winner": {
+            "total": 99.94062084606581,
+            "name": "Player1",
+            "userId": -1
+          },
+          "queuedCount": 2,
+          "maxPlayers": 6
+        },
+        "dailyChallenge": {
+          "temperatureBand": 23,
+          "description": "Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань! Однакові умови для всіх; спроби необмежені.",
+          "id": "daily_20763",
+          "duration": 90,
+          "bonusXP": 60,
+          "name": "Виклик дня: Година пік",
+          "recipeId": "vegetarian",
+          "goal": 85,
+          "heatMultiplier": 1.15
+        },
+        "bakeDuration": 18,
+        "bakeElapsed": 18,
+        "queued": true,
+        "message": "Ти в черзі на наступний раунд. Поточне змагання ще триває."
+      }
+    }
+  },
+  "countdownUI": {
+    "p1": {
+      "chatVisible": false,
+      "toast": "",
+      "room": "countdown",
+      "clock": "СТАРТ ЧЕРЕЗ 10 с",
+      "toastVisible": false
+    },
+    "p2": {
+      "chatVisible": false,
+      "toast": "",
+      "room": "countdown",
+      "clock": "СТАРТ ЧЕРЕЗ 9 с",
+      "toastVisible": false
+    }
+  },
+  "canceledCountdown": {
+    "players": {
+      "1": {
+        "done": false,
+        "forfeited": false,
+        "userId": -1,
+        "name": "Player1"
+      }
+    },
+    "minPlayers": 2,
+    "phase": "waiting",
+    "member": true,
+    "endsAt": 0,
+    "startsAt": 0,
+    "recipeId": "marinara",
+    "queued": false,
+    "queuedCount": 0,
+    "maxPlayers": 6
+  },
+  "artifact": {
+    "sha256": "441eea2e0f9aca4168da109ceb750936b2cfc1616f467e3813814afca5a55773",
+    "loadDefaultChat": false,
+    "note": "Two-client regression used original Studio document with exact updated scripts. Reopened built artifact separately verifies serialized chat configuration.",
+    "smoke": {
+      "ui": true,
+      "phase": "menu",
+      "chatGui": false,
+      "chatScript": false,
+      "gameScriptErrors": [],
+      "engineWarnings": [
+        "Player:Move called, but player currently has no character."
+      ]
+    }
+  }
+}
