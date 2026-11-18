@@ -22,6 +22,8 @@ local band=original.contract.temperatureBand
 prepare(author);advance(32);handleAction(author,'Bake');advance(9,author);handleAction(author,'Turn');advance(20,author);handleAction(author,'Serve')
 local result=original.result
 check(result and result.total>=50,'Author completes a real wild-oven order')
+check(Challenges.CanShareResult(result,'shift') and not Challenges.CanShareResult(result,'tutorial'),
+ 'Client and server share the same challenge eligibility for completed orders and tutorials')
 handleAction(author,'CreateChallenge',{score=100,recipeId='bianca',duration=1})
 local saved=original.shareChallenge
 check(saved and saved.score==Challenges.Score(result.total) and saved.recipeId==original.recipeId,'Challenge ignores forged client scores and recipes')
@@ -36,6 +38,7 @@ check(sessions[reader].challengeStatus=='@challenge.wait','Rapid lookup reports 
 handleAction(reader,'AcceptChallenge','FFFFFFFFFFFF')
 check(sessions[reader].phase=='menu','Accept rejects a code that was not previewed')
 handleAction(reader,'AcceptChallenge',code)
+check(snapshot(reader).pendingChallenge==nil,'Accept consumes the pending preview while retaining the active challenge')
 local trial=sessions[reader]
 check(trial.mode=='challenge' and trial.recipeId==saved.recipeId and trial.deadline-trial.startedAt==duration and trial.contract.heatMultiplier==heat and trial.contract.temperatureBand==band,'Acceptance replays the saved recipe, oven and time limit')
 prepare(reader);handleAction(reader,'Bake');advance(9,reader);handleAction(reader,'Turn');advance(20,reader);handleAction(reader,'Serve')
@@ -73,6 +76,7 @@ invalid=table.clone(loaded);invalid.ingredients={tomato=99}
 check(not Challenges.Validate(invalid,Recipes,TestEpoch),'Invalid stored topping counts are rejected')
 local expiring=fakePlayer(8005);handleAction(expiring,'LookupChallenge',code)
 local epochBefore=TestEpoch;TestEpoch=loaded.expiresAt
+check(snapshot(expiring).pendingChallenge==nil,'An expired preview is hidden from the menu')
 handleAction(expiring,'AcceptChallenge',code)
 check(sessions[expiring].phase=='menu' and sessions[expiring].message=='@challenge.expired','Expiry is rechecked at acceptance, not only lookup')
 check(select(2,challengeStore:Load(code))=='@challenge.expired','Cached records also honor their expiry')

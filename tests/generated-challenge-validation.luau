@@ -316,6 +316,9 @@ function Challenges.LaunchData(code)
  return clean and ('pc1:'..clean) or nil
 end
 function Challenges.Score(value) return math.floor(math.clamp(value,0,100)*10+.5)/10 end
+function Challenges.CanShareResult(result,mode)
+ return mode~='tutorial' and result~=nil and result.total>=50 and result.recipeScore>=50 and result.elapsed<=86400
+end
 function Challenges.Outcome(value,target)
  local score=Challenges.Score(value)
  return score>target and 'won' or (score==target and 'tied' or 'lost'),score
@@ -729,6 +732,8 @@ end
 local function snapshot(player)
 	local s = sessions[player]
 	if not s then return nil end
+	local pending = s.pendingChallenge
+	if pending and pending.expiresAt <= TestEpoch then pending = nil end
 	return {
 		phase = s.phase, mode = s.mode, recipeId = s.recipeId,
 		ingredients = copyIngredients(s.ingredients), startedAt = s.startedAt,
@@ -737,7 +742,7 @@ local function snapshot(player)
 		bakeQuality = s.bakeQuality, result = s.result, message = s.message,
 		turned = s.turned, turnBonus = s.turnBonus, perfectTurn = s.perfectTurn,
 		queued = s.queued, serverNow = now(),
-		pendingChallenge = s.pendingChallenge, activeChallenge = s.activeChallenge,
+		pendingChallenge = pending, activeChallenge = s.activeChallenge,
 		challengeRevision = s.challengeRevision or 0, shareChallenge = s.shareChallenge, challengeStatus = s.challengeStatus, challengeLocalOnly = challengeStore.localOnly,
 		profile = profileSnapshot(s), shift = s.shift, contract = s.contract, combo = s.combo,
 		dailyChallenge = Rules.Daily(math.floor(TestEpoch / 86400), Recipes),
@@ -999,7 +1004,7 @@ local function createChallenge(player)
 	local s = sessions[player]
 	if not s or s.challengeBusy or s.phase ~= "result" or s.mode == "tutorial" then return end
 	local result = s.result
-	if not result or result.total < 50 or result.recipeScore < 50 or result.elapsed > 86400 then s.challengeStatus = "@challenge.ineligible" return end
+	if not Challenges.CanShareResult(result, s.mode) then s.challengeStatus = "@challenge.ineligible" return end
 	if s.shareChallenge and s.shareChallenge.expiresAt > TestEpoch then return end
 	if now() < s.nextChallengeWrite then s.challengeStatus = "@challenge.wait" return end
 	s.nextChallengeWrite, s.challengeBusy, s.challengeStatus = now() + 10, true, "@challenge.saving"
@@ -1056,7 +1061,7 @@ local function handleAction(player, action, argument)
 			duration = record.duration, heatMultiplier = record.heatMultiplier, temperatureBand = record.temperatureBand,
 			goal = record.score, bonusXP = 0 }
 		beginPizza(s, "challenge", record.recipeId, time, record.duration > 0 and time + record.duration or 0, contract)
-		s.activeChallenge = record
+		s.pendingChallenge, s.activeChallenge = nil, record
 	elseif action == "RetryChallenge" then
 		if s.mode ~= "challenge" or s.phase ~= "result" or not s.activeChallenge then return end
 		local record = s.activeChallenge
@@ -1524,6 +1529,8 @@ local band=original.contract.temperatureBand
 prepare(author);advance(32);handleAction(author,'Bake');advance(9,author);handleAction(author,'Turn');advance(20,author);handleAction(author,'Serve')
 local result=original.result
 check(result and result.total>=50,'Author completes a real wild-oven order')
+check(Challenges.CanShareResult(result,'shift') and not Challenges.CanShareResult(result,'tutorial'),
+ 'Client and server share the same challenge eligibility for completed orders and tutorials')
 handleAction(author,'CreateChallenge',{score=100,recipeId='bianca',duration=1})
 local saved=original.shareChallenge
 check(saved and saved.score==Challenges.Score(result.total) and saved.recipeId==original.recipeId,'Challenge ignores forged client scores and recipes')
@@ -1538,6 +1545,7 @@ check(sessions[reader].challengeStatus=='@challenge.wait','Rapid lookup reports 
 handleAction(reader,'AcceptChallenge','FFFFFFFFFFFF')
 check(sessions[reader].phase=='menu','Accept rejects a code that was not previewed')
 handleAction(reader,'AcceptChallenge',code)
+check(snapshot(reader).pendingChallenge==nil,'Accept consumes the pending preview while retaining the active challenge')
 local trial=sessions[reader]
 check(trial.mode=='challenge' and trial.recipeId==saved.recipeId and trial.deadline-trial.startedAt==duration and trial.contract.heatMultiplier==heat and trial.contract.temperatureBand==band,'Acceptance replays the saved recipe, oven and time limit')
 prepare(reader);handleAction(reader,'Bake');advance(9,reader);handleAction(reader,'Turn');advance(20,reader);handleAction(reader,'Serve')
@@ -1575,6 +1583,7 @@ invalid=table.clone(loaded);invalid.ingredients={tomato=99}
 check(not Challenges.Validate(invalid,Recipes,TestEpoch),'Invalid stored topping counts are rejected')
 local expiring=fakePlayer(8005);handleAction(expiring,'LookupChallenge',code)
 local epochBefore=TestEpoch;TestEpoch=loaded.expiresAt
+check(snapshot(expiring).pendingChallenge==nil,'An expired preview is hidden from the menu')
 handleAction(expiring,'AcceptChallenge',code)
 check(sessions[expiring].phase=='menu' and sessions[expiring].message=='@challenge.expired','Expiry is rechecked at acceptance, not only lookup')
 check(select(2,challengeStore:Load(code))=='@challenge.expired','Cached records also honor their expiry')

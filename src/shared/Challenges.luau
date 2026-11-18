@@ -22,6 +22,9 @@ function Challenges.LaunchData(code)
  return clean and ('pc1:'..clean) or nil
 end
 function Challenges.Score(value) return math.floor(math.clamp(value,0,100)*10+.5)/10 end
+function Challenges.CanShareResult(result,mode)
+ return mode~='tutorial' and result~=nil and result.total>=50 and result.recipeScore>=50 and result.elapsed<=86400
+end
 function Challenges.Outcome(value,target)
  local score=Challenges.Score(value)
  return score>target and 'won' or (score==target and 'tied' or 'lost'),score

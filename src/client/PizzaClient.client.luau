@@ -45,7 +45,7 @@ local locale = L.Normalize(requestedLocale=='auto' and automaticLocale or reques
 local function T(key,params) return L.Text(locale,key,params) end
 local SocialService=game:GetService('SocialService')
 local Action, State, GetState = package:WaitForChild('Action'), package:WaitForChild('State'), package:WaitForChild('GetState')
-local C = {ink=Color3.fromRGB(44,48,40), cream=Color3.fromRGB(255,248,230), paper=Color3.fromRGB(255,253,245), green=Color3.fromRGB(42,91,66), sage=Color3.fromRGB(200,216,169), orange=Color3.fromRGB(225,100,54), gold=Color3.fromRGB(245,186,77), muted=Color3.fromRGB(118,121,101), red=Color3.fromRGB(194,62,44)}
+local C = {ink=Color3.fromRGB(44,48,40), cream=Color3.fromRGB(255,248,230), paper=Color3.fromRGB(255,253,245), green=Color3.fromRGB(42,91,66), sage=Color3.fromRGB(200,216,169), orange=Color3.fromRGB(225,100,54), tomato=Color3.fromRGB(187,67,34), gold=Color3.fromRGB(245,186,77), muted=Color3.fromRGB(100,104,85), red=Color3.fromRGB(194,62,44)}
 local gui=Instance.new('ScreenGui'); gui.Name='PizzaChiefUI'; gui.IgnoreGuiInset=false; gui.ScreenInsets=Enum.ScreenInsets.CoreUISafeInsets; gui.ClipToDeviceSafeArea=true; gui.ResetOnSpawn=false; gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling; gui.Parent=player:WaitForChild('PlayerGui')
 local backdrop=Instance.new('Frame');backdrop.Name='KitchenShade';backdrop.Size=UDim2.fromScale(1,1);backdrop.BackgroundColor3=Color3.fromRGB(23,35,29);backdrop.BackgroundTransparency=.42;backdrop.BorderSizePixel=0;backdrop.Parent=gui
 local root=Instance.new('Frame'); root.Name='Canvas'; root.Size=UDim2.fromOffset(1440,900); root.AnchorPoint=Vector2.new(.5,.5); root.Position=UDim2.fromScale(.5,.5); root.BackgroundTransparency=1; root.Parent=gui
@@ -54,11 +54,16 @@ local mobile=false
 local refreshViewport
 local function resize()
  local v=gui.AbsoluteSize
- if v.X<1 or v.Y<1 then v=workspace.CurrentCamera.ViewportSize end
+ if v.X<1 or v.Y<1 then
+  local camera=workspace.CurrentCamera
+  if not camera then return end
+  v=camera.ViewportSize
+ end
+ local previousSize=root.Size
  mobile=v.X<1000 or v.Y<600
  root.Size=mobile and UDim2.fromOffset(v.X,v.Y) or UDim2.fromOffset(1440,900)
  scale.Scale=mobile and 1 or math.min(v.X/1440,v.Y/900)
- if refreshViewport then refreshViewport() end
+ if refreshViewport and root.Size~=previousSize then refreshViewport() end
 end
 resize(); gui:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize)
 local function styleText(o)
@@ -90,7 +95,7 @@ local function label(parent,name,text,x,y,w,h,size,color,font)
  return make('TextLabel',parent,{Name=name,Text=text,Position=UDim2.fromOffset(x,y),Size=UDim2.fromOffset(w,h),BackgroundTransparency=1,TextColor3=color or C.ink,Font=font or Enum.Font.GothamMedium,TextSize=size or 18,TextXAlignment=Enum.TextXAlignment.Left,TextYAlignment=Enum.TextYAlignment.Center,TextWrapped=true})
 end
 local function button(parent,name,text,x,y,w,h,color,fn)
- local b=round(make('TextButton',parent,{Name=name,Text=text,Position=UDim2.fromOffset(x,y),Size=UDim2.fromOffset(w,h),BackgroundColor3=color or C.green,TextColor3=C.cream,Font=Enum.Font.GothamBold,TextSize=18,BorderSizePixel=0,AutoButtonColor=true}),12)
+ local b=round(make('TextButton',parent,{Name=name,Text=text,Position=UDim2.fromOffset(x,y),Size=UDim2.fromOffset(w,h),BackgroundColor3=color==C.orange and C.tomato or color or C.green,TextColor3=C.cream,Font=Enum.Font.GothamBold,TextSize=18,BorderSizePixel=0,AutoButtonColor=true}),12)
  if fn then b.Activated:Connect(fn) end; return b
 end
 local function send(a,v) Action:FireServer(a,v) end
@@ -104,6 +109,10 @@ local clock=label(header,'Clock','BUON APPETITO!',1100,20,252,36,19,C.gold,Enum.
 local page=make('ScrollingFrame',root,{CanvasSize=UDim2.new(),ScrollBarThickness=0,ScrollingEnabled=false,BorderSizePixel=0,Name='Page',Position=UDim2.fromOffset(0,112),Size=UDim2.fromOffset(1440,740),BackgroundTransparency=1})
 local footer=label(root,'Footer',T('footer'),35,865,1000,20,12,C.cream)
 local toast=label(root,'Toast','',430,817,580,44,16,C.cream); toast.TextXAlignment=Enum.TextXAlignment.Center; toast.BackgroundColor3=C.green; toast.BackgroundTransparency=.08; toast.Visible=false; toast.ZIndex=30; round(toast,12)
+local loading=round(label(root,'Loading',T('server.loading'),0,0,440,80,20,C.cream,Enum.Font.GothamBold),18)
+loading.AnchorPoint=Vector2.new(.5,.5);loading.Position=UDim2.fromScale(.5,.5)
+loading.BackgroundColor3=C.green;loading.BackgroundTransparency=0;loading.TextXAlignment=Enum.TextXAlignment.Center
+page.Visible=false;footer.Visible=false
 local data=nil
 local refs={}
 local signature=''
@@ -112,6 +121,10 @@ local modal=nil
 local challengeController
 local seenChallenge
 local openChallenge
+local function closeModal()
+ if challengeController then challengeController:Close()
+ elseif modal then modal:Destroy();modal=nil end
+end
 local function layoutModal() if mobile and modal then MobileLayout.Modal(modal,root.Size.X.Offset,root.Size.Y.Offset) end end
 local draggingHeat=false
 local touchPosition=nil
@@ -211,12 +224,12 @@ local function recipeLines(recipe)
  local lines={}; for _,i in ipairs(Recipes.Ingredients) do local n=recipe.ingredients[i.id]; if n then table.insert(lines,T(i.name)..'  ×'..n) end end; return table.concat(lines,'\n')
 end
 local function openRecipes()
- if modal then modal:Destroy() end
+ closeModal()
  modal=make('Frame',root,{Name='RecipeOverlay',Size=UDim2.fromScale(1,1),BackgroundColor3=C.ink,BackgroundTransparency=.35,BorderSizePixel=0,Active=true,ZIndex=20})
  local book=panel(modal,'RecipeBook',155,123,1130,700,C.cream)
  label(book,'Title',T('book.title'),30,18,850,40,30,C.green,Enum.Font.GothamBlack)
  label(book,'Subtitle',T('book.subtitle'),30,62,920,26,16,C.muted)
- button(book,'Close','×',1040,20,60,50,C.green,function() modal:Destroy(); modal=nil end)
+ button(book,'Close','×',1040,20,60,50,C.green,closeModal)
  local scroll=make('ScrollingFrame',book,{Name='RecipeList',Position=UDim2.fromOffset(25,105),Size=UDim2.fromOffset(1080,570),CanvasSize=UDim2.fromOffset(0,math.ceil(#Recipes.List/3)*166),ScrollBarThickness=5,BackgroundTransparency=1,BorderSizePixel=0})
  for index,r in ipairs(Recipes.List) do
   local x=((index-1)%3)*358; local y=math.floor((index-1)/3)*166
@@ -226,7 +239,7 @@ local function openRecipes()
   local best=data and data.profile and data.profile.recipeBest and data.profile.recipeBest[r.id] or {}
   label(card,'Mastery',stars(best.stars)..'  '..(best.score and math.floor(best.score+.5)..'/100' or '—')..(index>(data and data.profile and data.profile.unlockedRecipes or 6) and T('book.practice_only') or T('book.career')),16,81,310,22,13,C.orange,Enum.Font.GothamBold)
   card.LayoutOrder=index
-  button(card,'Choose',T('book.choose'),16,110,310,30,C.green,function() chosen=r.id; modal:Destroy(); modal=nil; send('StartPractice',chosen) end)
+  button(card,'Choose',T('book.choose'),16,110,310,30,C.green,function() chosen=r.id;closeModal();send('StartPractice',chosen) end)
  end
  layoutModal()
 end
@@ -234,43 +247,51 @@ local function progress(parent,name,x,y,w,value,color)
  local track=panel(parent,name,x,y,w,10,Color3.fromRGB(225,225,207)); round(track,5)
  local fill=panel(track,'Fill',0,0,math.max(1,w*value),10,color or C.green); round(fill,5); return fill
 end
+local function modeTitle(key) return T(key):gsub('^%d+%s*/%s*','') end
 local function buildMenu()
+ local profileData=data.profile or {}
+ local intro=Tutorial.NeedsIntroduction(profileData)
  local p=panel(page,'Welcome',35,15,620,661,C.cream)
- label(p,'Eyebrow',T('menu.eyebrow'),30,26,560,24,14,C.orange,Enum.Font.GothamBold)
- label(p,'Hero',T('menu.hero'),30,62,560,138,57,C.green,Enum.Font.GothamBlack)
- label(p,'Intro',T('menu.intro'),32,212,555,64,22,C.ink)
- local shift=panel(p,'ShiftCard',25,299,570,195,C.green)
- label(shift,'Title',T('menu.shift'),20,15,530,30,22,C.cream,Enum.Font.GothamBold)
- label(shift,'Body',T('menu.shift_body'),20,53,530,55,17,C.sage)
- refs.shiftBest=label(shift,'Best',T('menu.shift_best'),20,112,525,23,14,C.gold)
- refs.menuStart=button(shift,'Start',T('menu.start'),20,146,530,36,C.orange,function() send('StartShift') end)
- refs.menuHero=p.Hero;refs.menuIntro=p.Intro;refs.menuShiftTitle=shift.Title;refs.menuShiftBody=shift.Body
- refs.tutorialHelp=button(p,'TutorialHelp','',25,508,570,44,C.green,function() send(Tutorial.NeedsIntroduction(data.profile or {}) and 'SkipTutorial' or 'StartTutorial') end)
-
- button(p,'Practice',T('menu.practice'),25,568,272,52,C.green,function() send('StartPractice',chosen) end)
- button(p,'Book',T('menu.book'),312,568,283,52,C.orange,openRecipes)
+ label(p,'Hero',T('menu.hero'),30,24,388,125,51,C.green,Enum.Font.GothamBlack)
+ label(p,'Intro',T('menu.intro'),32,156,362,82,20,C.ink)
+ if not mobile then pizza(p,410,22,192,211,Recipes.ById[Tutorial.RecipeId].ingredients,true,false) end
+ local shift=panel(p,'ShiftCard',25,260,570,210,C.green)
+ label(shift,'Title',modeTitle('menu.shift'),20,14,530,31,22,C.cream,Enum.Font.GothamBold)
+ shift.Title.Visible=not intro
+ local shiftBody=intro and T('steps'):gsub('%d%d%s+','') or T('menu.shift_body')
+ label(shift,'Body',shiftBody,20,50,530,55,17,C.sage)
+ refs.shiftBest=label(shift,'Best',T('menu.shift_best'),20,107,530,22,14,C.gold)
+ refs.shiftBest.Visible=not intro
+ refs.menuStart=button(shift,'Start',T('menu.start'),20,144,530,50,C.orange,function() send('StartShift') end)
+ refs.menuHero=p.Hero;refs.menuIntro=p.Intro
+ refs.tutorialHelp=button(p,'TutorialHelp','',25,486,570,47,C.green,function() send(Tutorial.NeedsIntroduction(data.profile or {}) and 'SkipTutorial' or 'StartTutorial') end)
+ refs.tutorialHelp.BackgroundTransparency=1;refs.tutorialHelp.TextColor3=C.green
+ make('UIStroke',refs.tutorialHelp,{ApplyStrokeMode=Enum.ApplyStrokeMode.Border,Color=C.sage,Thickness=2})
+ button(p,'Practice',T('menu.practice'),25,552,272,52,C.green,function() send('StartPractice',chosen) end)
+ button(p,'Book',T('menu.book'),312,552,283,52,C.green,openRecipes)
+ if mobile and (profileData.persistence=='unavailable' or profileData.persistence=='session') then
+  refs.persistence=label(p,'Persistence','',0,0,0,0,13,C.muted)
+ end
  local profile=panel(page,'Career',685,15,720,205,C.cream)
  refs.rank=label(profile,'Rank',T('menu.rank'),24,18,670,38,29,C.green,Enum.Font.GothamBlack)
  refs.xp=label(profile,'XP','0 XP',24,63,670,27,17,C.muted)
  refs.xpFill=progress(profile,'Progress',24,107,672,0,C.orange)
  refs.profileDetails=label(profile,'Details','',24,132,672,54,16,C.green)
  local daily=panel(page,'DailyCard',685,242,346,255,C.cream)
- label(daily,'Label',T('menu.daily'),21,16,303,27,17,C.orange,Enum.Font.GothamBold)
+ label(daily,'Label',modeTitle('menu.daily'),21,16,303,27,17,C.tomato,Enum.Font.GothamBold)
  refs.dailyName=label(daily,'Name',T('menu.special'),21,54,303,57,26,C.green,Enum.Font.GothamBlack)
  refs.dailyText=label(daily,'Description',T('menu.daily_body'),21,118,303,62,16,C.muted)
  button(daily,'Start',T('menu.accept'),21,197,303,40,C.green,function() send('StartDaily') end)
  local battle=panel(page,'CompetitionCard',1051,242,354,255,C.green)
- label(battle,'Label','03 / PIZZA BATTLE',20,16,314,27,18,C.gold,Enum.Font.GothamBold)
+ label(battle,'Label','PIZZA BATTLE',20,16,314,27,18,C.gold,Enum.Font.GothamBold)
  label(battle,'Title',T('menu.battle_title'),20,55,314,57,28,C.cream,Enum.Font.GothamBlack)
- refs.roomInfo=label(battle,'Body',T('menu.battle_body'),20,119,314,60,16,C.sage)
- refs.join=button(battle,'Join',T('menu.join'),20,197,314,40,C.orange,function() if data and data.room and (data.room.member or data.room.queued) then send('LeaveRoom') else send('JoinRoom') end end)
- if mobile then refs.persistence=label(page,'Persistence','',12,1410,root.Size.X.Offset-24,64,14,C.cream) end
- button(page,'ChallengeEntry',T('challenge.title'),685,688,720,44,C.orange,function()openChallenge(data.pendingChallenge and 'incoming' or 'lookup')end)
- local badge=panel(page,'Collection',685,519,720,157,C.green)
+ label(battle,'Body',T('menu.battle_body'),20,119,314,60,16,C.sage)
+ button(battle,'Join',T('menu.join'),20,197,153,40,C.orange,function() send('JoinRoom') end)
+ button(battle,'Invite',T('invite'),181,197,153,40,C.orange,inviteFriends)
+ refs.challengeEntry=button(page,'ChallengeEntry',T('challenge.title'),685,688,720,44,C.orange,function()openChallenge(data.pendingChallenge and 'incoming' or 'lookup')end)
+ local badge=panel(page,'Collection',685,519,720,120,C.green)
  refs.collection=label(badge,'Count',T('menu.stars'),23,15,674,32,21,C.gold,Enum.Font.GothamBold)
  refs.badges=label(badge,'Badges',T('menu.next_goal'),23,54,674,40,16,C.cream)
- button(badge,'Passport',T('menu.collection'),23,106,330,34,C.orange,openRecipes)
- button(badge,'Invite',T('invite'),368,106,330,34,C.orange,inviteFriends)
  refs.lobby=panel(page,'Lobby',685,242,720,434,C.cream); refs.lobby.Visible=false
  label(refs.lobby,'Heading',T('lobby'),25,18,670,35,25,C.green,Enum.Font.GothamBlack)
  refs.lobbyStatus=label(refs.lobby,'Status','',25,66,670,36,18,C.orange,Enum.Font.GothamBold)
@@ -390,7 +411,7 @@ local function buildKitchen()
  end
 end
 openChallenge=function(kind)
- if modal then modal:Destroy() end
+ closeModal()
  modal,challengeController=ChallengeUI.Open({root=root,mobile=mobile,T=T,C=C,make=make,panel=panel,label=label,button=button,
   pizza=pizza,stars=stars,player=player,Recipes=Recipes,Challenges=Challenges,L=L,
   data=function()return data end,send=send,invite=inviteFriends,notify=notify,
@@ -405,7 +426,7 @@ local function buildResult()
  label(card,'Title',r.recipeName or T('result.pizza'),32,58,650,58,39,C.green,Enum.Font.GothamBlack)
  local score=label(card,'Score','0',709,42,175,94,70,C.green,Enum.Font.GothamBlack)
  local counter=make('NumberValue',card,{Value=0});counter.Changed:Connect(function(v) score.Text=tostring(math.floor(v+.5)) end);TweenService:Create(counter,TweenInfo.new(.65,Enum.EasingStyle.Quart),{Value=r.total or 0}):Play()
- label(card,'Stars',stars(reward.stars),34,119,400,37,28,C.orange,Enum.Font.GothamBold)
+ label(card,'Stars',stars(reward.stars),34,119,400,37,28,C.tomato,Enum.Font.GothamBold)
  label(card,'ScoreCaption',T('result.points'),711,136,175,22,13,C.muted)
  local quality=math.floor((r.quality or 0)+.5);local speed=math.floor((r.speed or 0)+.5)
  label(card,'Quality',T('quality',{value=quality}),38,174,395,30,21,C.green,Enum.Font.GothamBold)
@@ -423,7 +444,7 @@ local function buildResult()
   if data.mode=='challenge' then send('RetryChallenge') elseif data.mode=='tutorial' then send('StartShift') elseif data.mode=='competition' then send('JoinRoom') elseif data.mode=='shift' then send(data.shift and data.shift.finished and 'StartShift' or 'NextOrder') elseif data.mode=='daily' then send('StartDaily') else send('StartPractice',data.recipeId) end
  end)
  button(card,'Menu',T('main_menu'),466,559,407,51,C.green,function() send(data.mode=='competition' and 'LeaveRoom' or 'Menu') end)
- button(card,'Record',T('challenge.card'),38,625,835,37,C.orange,openRecordCard)
+ button(card,'Record',T(Challenges.CanShareResult(data.result,data.mode) and 'challenge.card' or 'challenge.save_image'),38,625,835,37,C.orange,openRecordCard)
  if (reward.stars or 0)>=2 then
   for i=1,16 do
    local a=i*math.pi/8
@@ -434,15 +455,26 @@ local function buildResult()
  end
 end
 local function update(d)
+ if not d then return end
  local previous=data
- data=d;if not d then return end
+ data=d
+ local waiting=d.profile~=nil and d.profile.persistence=='loading'
+ if not previous or loading.Visible~=waiting then
+  loading.Visible=waiting
+  page.Visible=not waiting
+  footer.Visible=not waiting and not mobile
+ end
+ if waiting then
+  status.Text=T('server.loading')
+  return
+ end
  local sig=tostring(d.phase)..':'..tostring(d.recipeId)..':'..tostring(d.mode)..':'..tostring(d.shift and d.shift.stage or 0)..':'..tostring(d.startedAt)
  if sig~=signature then
-  if modal then modal:Destroy();modal=nil end
+  closeModal()
   signature=sig;draggingHeat=false;touchPosition=nil;page:ClearAllChildren();page.CanvasPosition=Vector2.zero;refs={}
   local dock=root:FindFirstChild('MobileDock');if dock then dock:Destroy() end
   if d.phase=='menu' or not d.phase then buildMenu() elseif d.phase=='result' then buildResult() else buildKitchen() end
-  if mobile then MobileLayout.Apply(root,page,refs,d,T) end
+  if mobile then MobileLayout.Apply(root,page,refs,d) end
  end
  local profile=d.profile or {};local recipe=Recipes.ById[d.recipeId]
  brand.Text=mobile and d.phase~='menu' and recipe and recipe.name or 'PIZZA CHIEF'
@@ -517,8 +549,6 @@ local function update(d)
  if refs.rank then
   local intro=Tutorial.NeedsIntroduction(profile)
   refs.menuStart.Text=T(intro and 'tutorial.start' or 'menu.start')
-  refs.menuShiftTitle.Text=T(intro and 'tutorial.title' or 'menu.shift')
-  refs.menuShiftBody.Text=T(intro and 'steps' or 'menu.shift_body')
   refs.menuHero.Text=T(intro and 'tutorial.title' or 'menu.hero')
   refs.menuIntro.Text=T(intro and 'tutorial.intro' or 'menu.intro')
   refs.tutorialHelp.Text=T(intro and 'tutorial.skip' or 'tutorial.replay')
@@ -535,15 +565,19 @@ local function update(d)
   refs.dailyName.Text=Recipes.ById[daily.recipeId] and Recipes.ById[daily.recipeId].name or T(daily.name)
   local dailyDone=profile.lastDailyDay==math.floor((d.serverNow or os.time())/86400)
   refs.dailyText.Text=dailyDone and (T('daily.done',{score=math.floor((profile.dailyBest and profile.dailyBest.score or 0)+.5)})) or (T('daily.goal',{name=daily.name or "@daily",score=daily.goal or 85,xp=daily.bonusXP or 60}))
+  refs.challengeEntry.Text=T(d.pendingChallenge and 'challenge.open_invite' or 'challenge.title')
  end
  if refs.lobby then
-  refs.lobby.Visible=room.member or room.queued or false
+  local joined=room.member or room.queued or false
+  if mobile and joined and not refs.lobby.Visible then
+   page.CanvasPosition=Vector2.new(0,refs.lobby.Position.Y.Offset)
+  end
+  refs.lobby.Visible=joined
+  page.DailyCard.Visible=not refs.lobby.Visible
+  page.CompetitionCard.Visible=not refs.lobby.Visible
+  page.Collection.Visible=mobile or not refs.lobby.Visible
   refs.lobbyStatus.Text=room.queued and T('lobby.queued') or (room.phase=='countdown' and T('lobby.starting') or T('lobby.invite'))
-  local names={};for n,p in ipairs(players) do table.insert(names,string.format('%02d  %s',n,p.name)) end;refs.lobbyPlayers.Text=table.concat(names,'\n')
- end
- if refs.roomInfo then
-  refs.roomInfo.Text=T('menu.battle_body')
-  refs.join.Text=room.member and T('lobby.leave') or (room.queued and T('lobby.unqueue') or T('menu.join'))
+  local names={};for _,p in ipairs(players) do table.insert(names,p.name) end;refs.lobbyPlayers.Text=table.concat(names,'\n')
  end
  if refs.steps and d.shift then refs.steps.Text=T('shift.steps',{stage=d.shift.stage,combo=d.shift.combo or 0,name=d.contract and d.contract.name or ""}) end
  if refs.runInfo then
@@ -589,7 +623,7 @@ local function update(d)
     refs.coach.Text=d.phase=='ready' and T('tutorial.serve') or (nextId and T('tutorial.add',{ingredient=ingredientById[nextId].name,count=recipe.ingredients[nextId]-((d.ingredients or {})[nextId] or 0)}) or T('tutorial.bake'))
    end
    if refs.runInfo then refs.runInfo.Text=T('tutorial.intro') end
-   if refs.bakeButton then refs.bakeButton.Active=check.ready;refs.bakeButton.AutoButtonColor=check.ready;refs.bakeButton.BackgroundColor3=check.ready and C.orange or C.muted end
+   if refs.bakeButton then refs.bakeButton.Active=check.ready;refs.bakeButton.AutoButtonColor=check.ready;refs.bakeButton.BackgroundColor3=check.ready and C.tomato or C.muted end
    for id,card in pairs(refs.ingredientCards or {}) do
     local unlocked=table.find(Tutorial.Ingredients,id) and table.find(Tutorial.Ingredients,id)<=index
     card.Visible=unlocked==true
@@ -626,15 +660,15 @@ local function update(d)
  footer.Text=profile.persistence=='session' and T('footer.studio') or (profile.persistence=='unavailable' and T('footer.unsaved') or T('footer.normal'))
 end
 local function openLanguages()
- if modal then modal:Destroy() end
+ closeModal()
  modal=make('Frame',root,{Name='LanguageOverlay',Size=UDim2.fromScale(1,1),BackgroundColor3=C.ink,BackgroundTransparency=.2,BorderSizePixel=0,Active=true,ZIndex=40})
  local card=panel(modal,'Languages',290,110,860,675,C.cream)
  label(card,'Title',T('language.title'),28,20,720,43,28,C.green,Enum.Font.GothamBold)
- button(card,'Close','×',765,17,65,48,C.green,function() modal:Destroy();modal=nil end)
+ button(card,'Close','×',765,17,65,48,C.green,closeModal)
  label(card,'Hint',T('language.note'),28,73,804,46,16,C.muted)
  local function choose(id)
   player:SetAttribute('PizzaChiefLocale',id)
-  if modal then modal:Destroy();modal=nil end
+  closeModal()
  end
  button(card,'Automatic',T('language.auto'),28,135,804,42,C.green,function() choose('auto') end)
  for n,entry in ipairs(L.Locales) do
@@ -649,6 +683,7 @@ languageButton=button(root,'Language',T('language')..' / '..locale,1125,855,280,
 languageButton.ZIndex=10
 refreshViewport=function()
  signature=''
+ closeModal()
  -- Restore desktop chrome after rotating/resizing out of a compact layout.
  if not mobile then
   header.Position=UDim2.fromOffset(30,26);header.Size=UDim2.fromOffset(1380,76)
@@ -662,6 +697,8 @@ refreshViewport=function()
   page.Position=UDim2.fromOffset(0,112);page.Size=UDim2.fromOffset(1440,740)
   page.CanvasSize=UDim2.new();page.ScrollingEnabled=false;page.ScrollBarThickness=0
  end
+ loading.Size=UDim2.fromOffset(math.min(440,root.Size.X.Offset-32),80)
+ if mobile and (not data or loading.Visible) then MobileLayout.Apply(root,page,refs,{phase='loading'}) end
  if data then update(data) end
  gui:SetAttribute('CompactLayout',mobile)
 end
@@ -689,6 +726,7 @@ local function refreshLocale()
  signature='';localNoticeUntil=0;localNotice='';refreshWorld()
  -- Persistent header/footer are outside the rebuilt page.
  tagline.Text=T('tagline');footer.Text=T('footer.normal')
+ loading.Text=T('server.loading')
  languageButton.Text=T('language')..' / '..locale
  for _,o in ipairs(root:GetDescendants()) do
   if o:IsA('TextLabel') or o:IsA('TextButton') then styleText(o) end
@@ -703,8 +741,12 @@ game:GetService('LocalizationService'):GetPropertyChangedSignal('RobloxLocaleId'
  if requested==nil or requested=='auto' then refreshLocale() end
 end)
 gui:SetAttribute('ResolvedLocale',locale)
+refreshViewport()
 State.OnClientEvent:Connect(update)
-local ok,initial=pcall(function() return GetState:InvokeServer() end); if ok then update(initial) end
+task.spawn(function()
+ local ok,initial=pcall(function() return GetState:InvokeServer() end)
+ if ok and not data then update(initial) end
+end)
 UIS.InputBegan:Connect(function(input,processed)
  if processed or modal or UIS:GetFocusedTextBox() or not data then return end
  local keys={Enum.KeyCode.One,Enum.KeyCode.Two,Enum.KeyCode.Three,Enum.KeyCode.Four,Enum.KeyCode.Five,Enum.KeyCode.Six,Enum.KeyCode.Seven}
@@ -719,7 +761,9 @@ local lastHeat=0
 UIS.InputEnded:Connect(function(input) if input.UserInputType==Enum.UserInputType.MouseButton1 or input==heatTouch then draggingHeat=false; touchPosition=nil;heatTouch=nil end end)
 UIS.InputChanged:Connect(function(input) if input==heatTouch then touchPosition=input.Position end end)
 RunService.RenderStepped:Connect(function()
- local cam=workspace.CurrentCamera; cam.CameraType=Enum.CameraType.Scriptable
+ local cam=workspace.CurrentCamera
+ if not cam then return end
+ cam.CameraType=Enum.CameraType.Scriptable
  local target=data and data.phase~='menu' and CFrame.lookAt(Vector3.new(27,24,38),Vector3.new(0,4,-7)) or CFrame.lookAt(Vector3.new(38,29,43),Vector3.new(1,4,-4))
  cam.CFrame=cam.CFrame:Lerp(target,.035); cam.FieldOfView=55
  if data then
@@ -740,7 +784,7 @@ RunService.RenderStepped:Connect(function()
    if not data.turned then
     local window=math.abs(ratio-Cooking.TurnCenter)<=Cooking.TurnWindow
     refs.turnButton.Text=window and (mobile and T('turn.now'):gsub('%s*·%s*SPACE','') or T('turn.now')) or (ratio<.5 and T('turn.wait') or T('turn.missed'))
-    refs.turnButton.BackgroundColor3=window and C.orange or C.muted
+    refs.turnButton.BackgroundColor3=window and C.tomato or C.muted
    end
   end
   if data.phase=='bake' and not modal and not UIS:GetFocusedTextBox() and now-lastHeat>.12 then

@@ -35,7 +35,65 @@ function Layout.Pantry(p,width)
  if p:GetAttribute('LandscapeCompact') then p.Ingredients.Position=UDim2.fromOffset(12,52) end
 end
 
-function Layout.Apply(root,page,refs,data,T)
+local function menu(page,w,h,refs)
+ local wide=w>=650
+ local short=wide and h<500
+ local cw=wide and math.floor((w-36)/2) or math.min(w-24,520)
+ local x=wide and 12 or (w-cw)/2
+ local rightX=wide and x+cw+12 or x
+ local welcome=page.Welcome
+ local shift=welcome.ShiftCard
+ local intro=not shift.Title.Visible
+ local shiftY=short and 80 or 108
+ local shiftHeight=intro and (short and 102 or 118) or (short and 128 or 170)
+ local helpY=shiftY+shiftHeight+8
+ local bottom=helpY+112
+ local welcomeHeight=bottom+(refs.persistence and 52 or 0)
+ box(welcome,x,0,cw,welcomeHeight)
+ full(welcome,'Hero',short and 4 or 8,short and 38 or 52,cw);textSize(welcome.Hero,29)
+ full(welcome,'Intro',short and 44 or 62,short and 32 or 42,cw);textSize(welcome.Intro,16)
+ box(shift,12,shiftY,cw-24,shiftHeight)
+ full(shift,'Title',short and 4 or 8,short and 20 or 25,cw-24);textSize(shift.Title,18)
+ full(shift,'Body',intro and 8 or (short and 24 or 34),short and 30 or 44,cw-24);textSize(shift.Body,15)
+ full(shift,'Best',short and 54 or 80,short and 20 or 22,cw-24)
+ full(shift,'Start',shiftHeight-(short and 54 or 58),48,cw-24)
+ full(welcome,'TutorialHelp',helpY+4,44,cw)
+ child(welcome,'Practice',12,helpY+58,(cw-34)/2,44)
+ child(welcome,'Book',22+(cw-34)/2,helpY+58,(cw-34)/2,44)
+ full(welcome,'Persistence',bottom-1,48,cw)
+
+ local modeY=wide and 0 or welcomeHeight+12
+ box(page.ChallengeEntry,rightX,modeY,cw,48)
+ local daily=page.DailyCard
+ box(daily,rightX,modeY+60,cw,192)
+ full(daily,'Label',8,22,cw);full(daily,'Name',32,32,cw)
+ textSize(daily:FindFirstChild('Name'),23)
+ full(daily,'Description',66,60,cw);full(daily,'Start',136,44,cw)
+ local battle=page.CompetitionCard
+ box(battle,rightX,modeY+264,cw,192)
+ full(battle,'Label',8,22,cw);full(battle,'Title',32,32,cw)
+ textSize(battle.Title,23)
+ full(battle,'Body',66,60,cw)
+ child(battle,'Join',12,136,(cw-34)/2,44)
+ child(battle,'Invite',22+(cw-34)/2,136,(cw-34)/2,44)
+
+ local lobby=page.Lobby
+ box(lobby,rightX,modeY+60,cw,396);lobby.ZIndex=5
+ full(lobby,'Heading',10,28,cw);full(lobby,'Status',96,52,cw);full(lobby,'Players',152,206,cw)
+ child(lobby,'Invite',12,42,(cw-34)/2,44)
+ child(lobby,'Leave',22+(cw-34)/2,42,(cw-34)/2,44)
+ local careerY=wide and welcomeHeight+12 or modeY+468
+ local career=page.Career
+ box(career,x,careerY,cw,172)
+ full(career,'Rank',10,34,cw);textSize(career.Rank,22)
+ full(career,'XP',48,28,cw);full(career,'Progress',82,10,cw);full(career,'Details',102,60,cw)
+ local collection=page.Collection
+ box(collection,x,careerY+184,cw,108)
+ full(collection,'Count',10,32,cw);full(collection,'Badges',44,54,cw)
+ page.CanvasSize=UDim2.fromOffset(0,math.max(careerY+304,modeY+468))
+end
+
+function Layout.Apply(root,page,refs,data)
  local w,h=root.Size.X.Offset,root.Size.Y.Offset
  local wide=w>=650
  local pad=12
@@ -49,71 +107,45 @@ function Layout.Apply(root,page,refs,data,T)
  box(root.Toast,12,h-164,w-24,48)
  box(page,0,60,w,h-116);page.ScrollingEnabled=true;page.ScrollBarThickness=3
  local old=root:FindFirstChild('MobileDock');if old then old:Destroy() end
- if data.phase=='menu' then
-  local cw=math.min(w-24,520);local x=(w-cw)/2
-  local welcome=page.Welcome;box(welcome,x,0,cw,452)
-  hide(welcome,'Eyebrow');full(welcome,'Hero',12,68,cw);textSize(welcome.Hero,33)
-  full(welcome,'Intro',82,54,cw);textSize(welcome.Intro,18)
-  local shift=welcome.ShiftCard;box(shift,12,148,cw-24,174)
-  full(shift,'Title',10,28,cw-24);textSize(shift.Title,19)
-  full(shift,'Body',42,48,cw-24);textSize(shift.Body,15)
-  full(shift,'Best',92,20,cw-24);full(shift,'Start',118,48,cw-24)
-  hide(welcome,'PracticeHint');full(welcome,'TutorialHelp',332,44,cw)
-  child(welcome,'Practice',12,388,(cw-34)/2,48);child(welcome,'Book',22+(cw-34)/2,388,(cw-34)/2,48)
-  local career=page.Career;box(career,x,464,cw,195)
-  full(career,'Rank',12,36,cw);textSize(career.Rank,23)
-  full(career,'XP',54,30,cw);full(career,'Progress',94,10,cw);full(career,'Details',116,64,cw)
-  for i,name in ipairs({'DailyCard','CompetitionCard'}) do
-   local card=page[name];box(card,x,671+(i-1)*252,cw,240)
-   full(card,'Label',12,26,cw);full(card,name=='DailyCard' and 'Name' or 'Title',47,48,cw)
-   full(card,name=='DailyCard' and 'Description' or 'Body',104,62,cw)
-   full(card,name=='DailyCard' and 'Start' or 'Join',178,48,cw)
-  end
-  local collection=page.Collection;box(collection,x,1175,cw,220)
-  full(collection,'Count',12,34,cw);full(collection,'Badges',50,48,cw)
-  full(collection,'Passport',108,44,cw);full(collection,'Invite',162,44,cw)
-  local lobby=page.Lobby;box(lobby,x,671,cw,492);lobby.ZIndex=5
-  full(lobby,'Heading',14,38,cw);full(lobby,'Status',62,58,cw);full(lobby,'Players',132,218,cw)
-  full(lobby,'Invite',364,48,cw);full(lobby,'Leave',426,48,cw)
-  box(page.ChallengeEntry,x,1407,cw,48)
-  box(page.Persistence,x,1468,cw,64)
-  page.CanvasSize=UDim2.fromOffset(0,1544)
+ if data.phase=='loading' then
+  page.Visible=false
+ elseif data.phase=='menu' then
+  menu(page,w,h,refs)
  elseif data.phase=='result' then
-  local cw=math.min(w-24,540);local card=page.Verdict;box(card,(w-cw)/2,0,cw,850)
-  full(card,'Eyebrow',12,30,cw);full(card,'Title',50,60,cw);textSize(card.Title,29)
-  full(card,'Score',116,86,cw);card.Score.TextXAlignment=Enum.TextXAlignment.Center
-  full(card,'ScoreCaption',198,24,cw);card.ScoreCaption.TextXAlignment=Enum.TextXAlignment.Center
-  full(card,'Stars',230,38,cw);card.Stars.TextXAlignment=Enum.TextXAlignment.Center
-  full(card,'Quality',280,28,cw);full(card,'QualityBar',314,10,cw)
-  full(card,'Speed',338,28,cw);full(card,'SpeedBar',372,10,cw)
+  local cw=math.min(w-24,540);local x=(w-cw)/2;local card=page.Verdict
+  local tutorial=data.mode=='tutorial'
+  full(card,'Eyebrow',8,26,cw)
+  child(card,'Title',16,38,cw-136,60);textSize(card.Title,29)
+  child(card,'Score',cw-114,38,98,64);textSize(card.Score,54)
+  card.Score.TextXAlignment=Enum.TextXAlignment.Center
+  child(card,'ScoreCaption',cw-114,102,98,24);card.ScoreCaption.TextXAlignment=Enum.TextXAlignment.Center
+  child(card,'Stars',16,100,cw-136,30)
+  local rewards=card.Rewards;box(rewards,12,140,cw-24,tutorial and 52 or 76)
+  full(rewards,'XP',4,tutorial and 44 or 32,cw-24);textSize(rewards.XP,18)
+  full(rewards,'Detail',38,32,cw-24)
+  full(card,'Feedback',tutorial and 202 or 222,62,cw);textSize(card.Feedback,16)
+  local standingsHeight=data.mode=='competition' and 148 or 84
+  full(card,'Standings',288,standingsHeight,cw)
+  local statsY=294+standingsHeight
+  local barW=(cw-44)/2
+  child(card,'Quality',16,statsY,barW,30);child(card,'QualityBar',16,statsY+34,barW,8)
+  child(card,'Speed',28+barW,statsY,barW,30);child(card,'SpeedBar',28+barW,statsY+34,barW,8)
   card.QualityBar.Fill.Size=UDim2.fromScale((data.result.quality or 0)/100,1)
   card.SpeedBar.Fill.Size=UDim2.fromScale((data.result.speed or 0)/100,1)
-  full(card,'Detail',396,48,cw)
-  local rewards=card.Rewards;box(rewards,12,454,cw-24,96)
-  full(rewards,'XP',8,40,cw-24);textSize(rewards.XP,18);full(rewards,'Detail',52,34,cw-24)
-  full(card,'Feedback',560,64,cw);full(card,'Standings',632,200,cw)
-  -- Keep all result actions reachable without scrolling past the verdict.
-  full(card,'Again',0,48,cw);full(card,'Menu',58,44,cw);full(card,'Record',112,44,cw)
-  local actions=Instance.new('Frame');actions.Name='Actions';actions.BackgroundTransparency=1;actions.Parent=page
-  box(actions,(w-cw)/2,862,cw,166)
-  for _,name in ipairs({'Again','Menu','Record'}) do card[name].Parent=actions end
+  full(card,'Detail',statsY+50,42,cw);textSize(card.Detail,14)
+  if tutorial then
+   for _,name in ipairs({'Quality','QualityBar','Speed','SpeedBar','Detail','Standings'}) do hide(card,name) end
+   hide(rewards,'Detail')
+  end
+  local recordY=tutorial and 274 or statsY+100
+  full(card,'Record',recordY,44,cw)
+  box(card,x,0,cw,recordY+56)
   local dock=Instance.new('Frame');dock.Name='MobileDock';dock.BackgroundTransparency=1;dock.Parent=root
   box(dock,12,h-108,w-24,104)
-  actions.Again.Parent=dock;box(dock.Again,0,0,w-24,48)
-  actions.Menu.Parent=dock;box(dock.Menu,0,56,w-186,44)
+  card.Again.Parent=dock;box(dock.Again,0,0,w-24,48)
+  card.Menu.Parent=dock;box(dock.Menu,0,56,w-186,44)
   box(page,0,60,w,h-180)
-  child(actions,'Record',16,0,cw-32,44)
-  page.CanvasSize=UDim2.fromOffset(0,918)
-  if data.mode=='tutorial' then
-   hide(card,'Speed');hide(card,'SpeedBar');hide(card,'Detail');hide(card,'Standings')
-   full(card,'Eyebrow',8,24,cw);full(card,'Title',36,42,cw)
-   full(card,'Score',84,74,cw);textSize(card.Score,64)
-   full(card,'ScoreCaption',158,20,cw);full(card,'Stars',184,32,cw)
-   full(card,'Quality',228,26,cw);full(card,'QualityBar',260,8,cw)
-   box(rewards,12,282,cw-24,56);full(rewards,'XP',4,48,cw-24);hide(rewards,'Detail')
-   full(card,'Feedback',350,100,cw);textSize(card.Feedback,16);box(card,(w-cw)/2,0,cw,462)
-   box(actions,(w-cw)/2,474,cw,56);page.CanvasSize=UDim2.fromOffset(0,542)
-  end
+  page.CanvasSize=UDim2.fromOffset(0,recordY+68)
  else
   local dock=Instance.new('Frame');dock.Name='MobileDock';dock.BackgroundTransparency=1;dock.Parent=root
   box(dock,12,h-108,w-24,104)
@@ -144,7 +176,7 @@ function Layout.Apply(root,page,refs,data,T)
   full(board,'Ready',bh-60,48,left)
   local oven=page:FindFirstChild('OvenControl')
   if oven then
-   box(oven,rx,wide and 0 or bh+10,right,230)
+   box(oven,rx,0,right,230)
    full(oven,'Title',6,22,right);child(oven,'Quality',right-148,6,136,22)
    child(oven,'Temperature',12,32,130,42);textSize(oven.Temperature,30)
    child(oven,'Heat',148,32,right-160,48)
@@ -155,9 +187,10 @@ function Layout.Apply(root,page,refs,data,T)
    box(zone,zone.Position.X.Offset/590*(right-32),0,recipeBand*2/280*(right-32),18)
    child(oven,'Cool',12,176,(right-34)/2,44);child(oven,'Hot',22+(right-34)/2,176,(right-34)/2,44);hide(oven,'Keys');oven.Cool.Text=oven.Cool.Text:gsub('^A%s*/%s*','');oven.Hot.Text=oven.Hot.Text:gsub('^D%s*/%s*','')
    local timing=board.TurnWindow;timing.Parent=page
-   box(timing,rx,wide and 242 or bh+252,right,34)
+   box(timing,rx,242,right,34)
    box(timing.Good,right*.36,0,right*.28,34);box(timing.Perfect,right*.445,0,right*.111,34)
    refs.turnTrackWidth=right-4
+   if not wide then box(board,12,288,left,bh) end
    page.CanvasSize=UDim2.fromOffset(0,wide and math.max(288,bh) or bh+300)
   elseif data.phase=='prep' then
    local pantry=page.Pantry;box(pantry,rx,panelY,right,498);Layout.Pantry(pantry,right)
@@ -166,10 +199,6 @@ function Layout.Apply(root,page,refs,data,T)
    page.CanvasSize=UDim2.fromOffset(0,by+bh+12)
   end
   if data.phase~='prep' then page.Pantry.Visible=false end
-  local change=page:FindFirstChild('ChangeRecipe')
-  if change then
-   local y=page.CanvasSize.Y.Offset;box(change,12,y,w-24,44);page.CanvasSize=UDim2.fromOffset(0,y+56)
-  end
  end
  -- Short landscape phones use one bottom action row and a compact two-column kitchen.
  if wide and h<500 then
@@ -205,6 +234,7 @@ function Layout.Apply(root,page,refs,data,T)
     child(pantry,'Recommended',12,0,(right-34)/2,44);child(pantry,'All',22+(right-34)/2,0,(right-34)/2,44)
     pantry.Ingredients.Position=UDim2.fromOffset(12,data.mode=='tutorial' and 0 or 52)
     if data.mode=='tutorial' then hide(pantry,'Recommended') end
+    page.CanvasSize=UDim2.fromOffset(0,math.max(available,pantry.Size.Y.Offset+12))
    elseif data.phase=='bake' then
     local oven=page.OvenControl;box(oven,rx,0,right,164)
     hide(oven,'Title');hide(oven,'Quality')
@@ -219,6 +249,10 @@ function Layout.Apply(root,page,refs,data,T)
     page.CanvasSize=UDim2.fromOffset(0,math.max(available,166))
    else page.CanvasSize=UDim2.fromOffset(0,available) end
   end
+ end
+ local change=page:FindFirstChild('ChangeRecipe')
+ if change then
+  local y=page.CanvasSize.Y.Offset;box(change,12,y,w-24,44);page.CanvasSize=UDim2.fromOffset(0,y+56)
  end
 end
 

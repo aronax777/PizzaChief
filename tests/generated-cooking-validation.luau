@@ -316,6 +316,9 @@ function Challenges.LaunchData(code)
  return clean and ('pc1:'..clean) or nil
 end
 function Challenges.Score(value) return math.floor(math.clamp(value,0,100)*10+.5)/10 end
+function Challenges.CanShareResult(result,mode)
+ return mode~='tutorial' and result~=nil and result.total>=50 and result.recipeScore>=50 and result.elapsed<=86400
+end
 function Challenges.Outcome(value,target)
  local score=Challenges.Score(value)
  return score>target and 'won' or (score==target and 'tied' or 'lost'),score
@@ -729,6 +732,8 @@ end
 local function snapshot(player)
 	local s = sessions[player]
 	if not s then return nil end
+	local pending = s.pendingChallenge
+	if pending and pending.expiresAt <= TestEpoch then pending = nil end
 	return {
 		phase = s.phase, mode = s.mode, recipeId = s.recipeId,
 		ingredients = copyIngredients(s.ingredients), startedAt = s.startedAt,
@@ -737,7 +742,7 @@ local function snapshot(player)
 		bakeQuality = s.bakeQuality, result = s.result, message = s.message,
 		turned = s.turned, turnBonus = s.turnBonus, perfectTurn = s.perfectTurn,
 		queued = s.queued, serverNow = now(),
-		pendingChallenge = s.pendingChallenge, activeChallenge = s.activeChallenge,
+		pendingChallenge = pending, activeChallenge = s.activeChallenge,
 		challengeRevision = s.challengeRevision or 0, shareChallenge = s.shareChallenge, challengeStatus = s.challengeStatus, challengeLocalOnly = challengeStore.localOnly,
 		profile = profileSnapshot(s), shift = s.shift, contract = s.contract, combo = s.combo,
 		dailyChallenge = Rules.Daily(math.floor(TestEpoch / 86400), Recipes),
@@ -999,7 +1004,7 @@ local function createChallenge(player)
 	local s = sessions[player]
 	if not s or s.challengeBusy or s.phase ~= "result" or s.mode == "tutorial" then return end
 	local result = s.result
-	if not result or result.total < 50 or result.recipeScore < 50 or result.elapsed > 86400 then s.challengeStatus = "@challenge.ineligible" return end
+	if not Challenges.CanShareResult(result, s.mode) then s.challengeStatus = "@challenge.ineligible" return end
 	if s.shareChallenge and s.shareChallenge.expiresAt > TestEpoch then return end
 	if now() < s.nextChallengeWrite then s.challengeStatus = "@challenge.wait" return end
 	s.nextChallengeWrite, s.challengeBusy, s.challengeStatus = now() + 10, true, "@challenge.saving"
@@ -1056,7 +1061,7 @@ local function handleAction(player, action, argument)
 			duration = record.duration, heatMultiplier = record.heatMultiplier, temperatureBand = record.temperatureBand,
 			goal = record.score, bonusXP = 0 }
 		beginPizza(s, "challenge", record.recipeId, time, record.duration > 0 and time + record.duration or 0, contract)
-		s.activeChallenge = record
+		s.pendingChallenge, s.activeChallenge = nil, record
 	elseif action == "RetryChallenge" then
 		if s.mode ~= "challenge" or s.phase ~= "result" or not s.activeChallenge then return end
 		local record = s.activeChallenge

@@ -38,13 +38,20 @@ function UI.Open(ctx,kind)
  local requestAt=0
  local pendingIntent
  local busy=false
+ local restoreCapture
  local poster
  local refs={}
  local controller={}
  local function focus(target,wasSelected)
   if wasSelected or gui.SelectedObject then gui.SelectedObject=target end
  end
- local function close() pendingIntent=nil;overlay:Destroy();ctx.close() end
+ function controller:Close()
+  pendingIntent=nil
+  if restoreCapture then restoreCapture() end
+  overlay:Destroy()
+  ctx.close()
+ end
+ local function close() controller:Close() end
  local function action(name,text,index,fn,color)
   if short then
    local bw=(cw-48)/3
@@ -108,7 +115,7 @@ function UI.Open(ctx,kind)
   scroll.CanvasSize=UDim2.fromOffset(0,ph+70)
  end
  local function eligible(d)
-  return d.phase=='result' and d.mode~='tutorial' and d.result and d.result.total>=50 and d.result.recipeScore>=50
+  return d.phase=='result' and ctx.Challenges.CanShareResult(d.result,d.mode)
  end
  local function capture()
   if busy or not overlay.Parent then return end
@@ -127,6 +134,7 @@ function UI.Open(ctx,kind)
   local restored=false
   local function finish()
    if restored then return end;restored=true;busy=false
+   restoreCapture=nil
    for o,visible in pairs(restore) do if o.Parent then o.Visible=visible end end
    if actions.Parent then actions.Visible=true end
    if refs.notice and refs.notice.Parent then refs.notice.Visible=true end
@@ -140,9 +148,11 @@ function UI.Open(ctx,kind)
   local oldScrollSize=scroll.Size;scroll.Size=UDim2.fromScale(1,1)
   local oldFinish=finish
   finish=function()oldFinish();if captureScale.Parent then captureScale:Destroy()end;if scroll.Parent then scroll.Size=oldScrollSize end end
+  restoreCapture=finish
   task.delay(12,finish)
   task.spawn(function()
    game:GetService('RunService').RenderStepped:Wait();game:GetService('RunService').RenderStepped:Wait()
+   if not overlay.Parent then finish();return end
    local ok=pcall(function()
     local service=game:GetService('CaptureService')
     service:TakeScreenshotCaptureAsync(function(status,captured)
@@ -157,6 +167,7 @@ function UI.Open(ctx,kind)
    if not ok then finish();ctx.notify(T('challenge.capture_failed')) end
   end)
  end
+ overlay.Destroying:Connect(function() if restoreCapture then restoreCapture() end end)
  local function perform(intent,record)
   if intent=='invite' then
    local target=result and result.challenge and result.challenge.creatorId
@@ -197,18 +208,22 @@ function UI.Open(ctx,kind)
   end
   input.FocusLost:Connect(function(enter)if enter then lookup()end end)
   action('Lookup',T('challenge.find'),1,lookup,C.orange)
-  action('Pending',T('challenge.open_invite'),2,function()local d=ctx.data();if d.pendingChallenge then offer(d.pendingChallenge)else refs.notice.Text=T('challenge.not_found')end end)
-  action('Close',T('back'),3,close)
+  local hasPending=ctx.data().pendingChallenge~=nil
+  if hasPending then
+   action('Pending',T('challenge.open_invite'),2,function()local d=ctx.data();if d.pendingChallenge then offer(d.pendingChallenge)else refs.notice.Text=T('challenge.expired')end end)
+  end
+  action('Close',T('back'),hasPending and 3 or 2,close)
   focus(input,wasSelected)
  end
  if kind=='lookup' then controller:Lookup()
  elseif kind=='incoming' and initial.pendingChallenge then offer(initial.pendingChallenge)
  else
   currentKind='result';renderPoster(resultRecord(initial))
-  local invite=action('Invite',T(result and result.challenge and 'challenge.reply' or 'challenge.invite'),1,function()request('invite')end,C.orange)
-  action('Save',T('challenge.save_image'),2,function()request('capture')end)
-  action('Close',T('back'),3,close)
-  focus(invite)
+  local invite
+  if eligible(initial) then invite=action('Invite',T(result and result.challenge and 'challenge.reply' or 'challenge.invite'),1,function()request('invite')end,C.orange) end
+  local save=action('Save',T('challenge.save_image'),invite and 2 or 1,function()request('capture')end)
+  action('Close',T('back'),invite and 3 or 2,close)
+  focus(invite or save)
  end
  function controller:Update(d)
   if not overlay.Parent then return end
@@ -220,7 +235,7 @@ function UI.Open(ctx,kind)
    elseif replied and pendingIntent=='lookup' and d.challengeStatus~='@challenge.loading' then pendingIntent=nil end
   elseif currentKind=='result' then
    local record=d.shareChallenge
-   refs.code.Text=record and T('challenge.code',{code=record.id}) or T(d.mode=='tutorial' and 'tutorial.done' or 'challenge.same_rules')
+   refs.code.Text=record and T('challenge.code',{code=record.id}) or (eligible(d) and T('challenge.same_rules') or '')
    refs.notice.Text=record and (d.challengeLocalOnly and T('challenge.local_only') or T('challenge.expires',{date=os.date('!%Y-%m-%d',record.expiresAt)})) or T(d.challengeStatus)
    if result and result.challenge and not pendingIntent and not record then
     refs.notice.Text=T(ctx.Challenges.OutcomeMessage[result.challenge.outcome],{name=ctx.L.Literal(result.challenge.creatorName),score=string.format('%.1f',result.challenge.score),target=string.format('%.1f',result.challenge.target)})
@@ -228,7 +243,6 @@ function UI.Open(ctx,kind)
    if pendingIntent and record then
     local intent=pendingIntent;pendingIntent=nil;task.defer(function()if overlay.Parent then perform(intent,record)end end)
    elseif replied and pendingIntent and d.challengeStatus~='' and d.challengeStatus~='@challenge.saving' and d.challengeStatus~='@challenge.saved' then pendingIntent=nil end
-   actions.Invite.Active=eligible(d);actions.Invite.AutoButtonColor=eligible(d)
   elseif displayedRecord then
    refs.code.Text=T('challenge.code',{code=displayedRecord.id})
    if d.message and d.message~='' then refs.notice.Text=T(d.message) end
