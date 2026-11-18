@@ -10,6 +10,11 @@ root = Path(__file__).resolve().parents[1]
 source = (root / 'src/server/GameServer.server.luau').read_text()
 recipes = (root / 'src/shared/Recipes.luau').read_text()
 rules = (root / 'src/shared/GameRules.luau').read_text()
+cooking = (root / 'src/shared/Cooking.luau').read_text()
+tutorial = (root / 'src/shared/Tutorial.luau').read_text()
+challenges = (root / 'src/shared/Challenges.luau').read_text()
+challenge_store = (root / 'src/server/ChallengeStore.luau').read_text()
+challenge_store = challenge_store.replace("require(game:GetService('ReplicatedStorage'):WaitForChild('PizzaChief'):WaitForChild('Challenges'))", 'TestChallenges').replace("require(game:GetService('ReplicatedStorage'):WaitForChild('PizzaChief'):WaitForChild('Recipes'))", 'TestRecipes')
 profile_store = (root / 'src/server/ProfileStore.luau').read_text()
 replacements = {
     'local Players = game:GetService("Players")': 'local Players = TestPlayers',
@@ -19,6 +24,10 @@ replacements = {
     'local Recipes = require(shared:WaitForChild("Recipes"))': 'local Recipes = TestRecipes',
     'workspace:GetServerTimeNow()': 'TestClock',
     'local Rules = require(shared:WaitForChild("GameRules"))': 'local Rules = TestRules',
+    'local Cooking = require(shared:WaitForChild("Cooking"))': 'local Cooking = TestCooking',
+    'local Tutorial = require(shared:WaitForChild("Tutorial"))': 'local Tutorial = TestTutorial',
+    'local Challenges = require(shared:WaitForChild("Challenges"))': 'local Challenges = TestChallenges',
+    'local ChallengeStore = require(script.Parent:WaitForChild("ChallengeStore"))': 'local ChallengeStore = TestChallengeStore',
     'local ProfileStore = require(script.Parent:WaitForChild("ProfileStore"))': 'local ProfileStore = TestProfileStore',
     'game:BindToClose(': 'TestBindToClose(',
     'os.time()': 'TestEpoch',
@@ -57,6 +66,7 @@ local function fakePlayer(id)
     function p:FindFirstChild(name) return name == "leaderstats" and stats or nil end
     TestPlayers.list[id] = p
     playerAdded(p)
+    sessions[p].profile.data.tutorialDismissed = true
     return p
 end
 local function advance(seconds, controlPlayer)
@@ -278,5 +288,16 @@ local TestProfileStore = (function()
         error('Unexpected service access: '..name)
     end}
 '''
-output.write_text(embedded + prefix + profile_prefix + profile_store + '\nend)()\n' + source + '\n' + suffix)
+embedded += 'local TestChallenges = (function()\n' + challenges + '\nend)()\n'
+embedded += 'local TestTutorial = (function()\n' + tutorial + '\nend)()\n'
+embedded += 'local TestCooking = (function()\n' + cooking + '\nend)()\n'
+challenge_prefix = 'local TestChallengeStore = (function()\n' + challenge_store + '\nend)()\n' + r'''
+local rawChallengeNew = TestChallengeStore.New
+local challengeGuid = 0
+TestChallengeStore.New = function()
+ return rawChallengeNew({localOnly=true, now=function()return TestEpoch end,
+  newId=function()challengeGuid+=1;return string.format('%012X',challengeGuid)end})
+end
+'''
+output.write_text(embedded + prefix + challenge_prefix + profile_prefix + profile_store + '\nend)()\n' + source + '\n' + suffix)
 print(output)

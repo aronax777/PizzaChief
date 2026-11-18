@@ -1,0 +1,8 @@
+-- Run after accepting a 100-point Pepperoni challenge through the real UI.
+-- Wait long enough in prep to finish below 100; this uses real remotes and server clock.
+local pkg=game.ReplicatedStorage.PizzaChief;local A,G=pkg.Action,pkg.GetState;local R=require(pkg.Recipes);local s=G:InvokeServer();local checks={};local function check(v,n)assert(v,n);table.insert(checks,n)end
+check(s.mode=='challenge'and s.phase=='prep','Real UI accepts code into challenge');local original=s.activeChallenge;for id,n in pairs(R.ById[s.recipeId].ingredients)do for _=1,n do A:FireServer('Add',id);task.wait(.075)end end
+A:FireServer('Bake');task.wait(.2);local began=os.clock();local turn=false
+while os.clock()-began<26 do s=G:InvokeServer();if s.phase=='ready'then break end;local e=s.bakeElapsed;local drift=math.sin(e*.72)*55+math.sin(e*1.63)*25;A:FireServer('Heat',math.clamp((R.ById[s.recipeId].temperature-drift-260)/260,0,1));if not turn and e/s.bakeDuration>=.48 then A:FireServer('Turn');turn=true end;task.wait(.15)end
+check(G:InvokeServer().phase=='ready','Challenge uses real oven and timer');A:FireServer('Serve');task.wait(.3);s=G:InvokeServer();check(s.result.challenge.id==original.id,'Real result retains opponent');check(s.result.challenge.outcome=='lost','Slower real attempt loses against 100');check(s.result.conditions.heatMultiplier==original.heatMultiplier and s.result.conditions.temperatureBand==original.temperatureBand and s.result.conditions.duration==original.duration,'Real attempt preserves oven and duration');return {passed=#checks,checks=checks,result=s.result,realClient=true,multiClient=false}
+

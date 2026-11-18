@@ -6,6 +6,11 @@ local RunService = game:GetService("RunService")
 local shared = ReplicatedStorage:WaitForChild("PizzaChief")
 local Recipes = require(shared:WaitForChild("Recipes"))
 local Rules = require(shared:WaitForChild("GameRules"))
+local Cooking = require(shared:WaitForChild("Cooking"))
+local Tutorial = require(shared:WaitForChild("Tutorial"))
+local Challenges = require(shared:WaitForChild("Challenges"))
+local ChallengeStore = require(script.Parent:WaitForChild("ChallengeStore"))
+local challengeStore = ChallengeStore.New()
 local ProfileStore = require(script.Parent:WaitForChild("ProfileStore"))
 
 local function remote(name, className)
@@ -59,8 +64,10 @@ local function newSession(player)
 		phase = "menu", mode = "practice", recipeId = defaultRecipe, ingredients = {},
 		startedAt = 0, deadline = 0, temperature = 20, heat = 0.5,
 		bakeElapsed = 0, bakeDuration = 0, bakeQuality = 0, bakeIntegral = 0,
+		turned = false, turnBonus = 0, perfectTurn = false,
 		result = nil, completedRoom = nil, message = "", roomMember = false, queued = false,
 		tokens = 25, tokenAt = now(),
+		challengeBusy = false, challengeStatus = "", nextChallengeRead = 0, nextChallengeWrite = 0,
 		profile = ProfileStore.Create(player.UserId), shift = nil, contract = nil, shiftSerial = 0, combo = 0,
 	}
 end
@@ -111,7 +118,10 @@ local function snapshot(player)
 		deadline = s.deadline, temperature = s.temperature, heat = s.heat,
 		bakeElapsed = s.bakeElapsed, bakeDuration = s.bakeDuration,
 		bakeQuality = s.bakeQuality, result = s.result, message = s.message,
+		turned = s.turned, turnBonus = s.turnBonus, perfectTurn = s.perfectTurn,
 		queued = s.queued, serverNow = now(),
+		pendingChallenge = s.pendingChallenge, activeChallenge = s.activeChallenge,
+		challengeRevision = s.challengeRevision or 0, shareChallenge = s.shareChallenge, challengeStatus = s.challengeStatus, challengeLocalOnly = challengeStore.localOnly,
 		profile = profileSnapshot(s), shift = s.shift, contract = s.contract, combo = s.combo,
 		dailyChallenge = Rules.Daily(math.floor(os.time() / 86400), Recipes),
 		daily = Rules.Daily(math.floor(os.time() / 86400), Recipes),
@@ -128,10 +138,12 @@ end
 local function beginPizza(s, mode, recipeId, startedAt, deadline, contract)
 	s.phase, s.mode, s.recipeId = "prep", mode, recipeId
 	s.contract = contract
+	s.activeChallenge, s.shareChallenge, s.challengeStatus = nil, nil, ""
 	s.ingredients, s.result, s.completedRoom, s.message = {}, nil, nil, ""
 	s.startedAt, s.deadline = startedAt, deadline or 0
 	s.temperature, s.heat = 20, 0.5
 	s.bakeElapsed, s.bakeDuration, s.bakeIntegral, s.bakeQuality = 0, 0, 0, 0
+	s.turned, s.turnBonus, s.perfectTurn = false, 0, false
 end
 
 local function zeroResult(s, feedback)
@@ -145,7 +157,26 @@ local function rememberResult(player, s, result, elapsed)
 	-- This function is entered once per server-owned pizza, never from client scores.
 	if s.phase == "result" then return end
 	result.elapsed = math.floor(elapsed * 10 + 0.5) / 10
+	result.ingredients, result.recipeId = copyIngredients(s.ingredients), s.recipeId
+	result.conditions = { duration = s.deadline > 0 and (s.deadline - s.startedAt) or 0,
+		heatMultiplier = s.contract and s.contract.heatMultiplier or 1,
+		temperatureBand = s.contract and s.contract.temperatureBand or 25 }
+	if s.activeChallenge then
+		local outcome,score = Challenges.Outcome(result.total, s.activeChallenge.score)
+		result.challenge = { id = s.activeChallenge.id, creatorId = s.activeChallenge.creatorId,
+			creatorName = s.activeChallenge.creatorName, target = s.activeChallenge.score, score = score, outcome = outcome }
+	end
 	local p = s.profile.data
+	if s.mode == "tutorial" then
+		-- Guided practice never overwrites career records or grants farmable rewards.
+		p.tutorialCompleted = true
+		-- Reading guidance has no speed penalty in the untimed lesson.
+		result.speed, result.total = 100, result.quality
+		result.previousBest, result.delta, result.personalBest = 0, 0, false
+		result.reward = { xp = 0, stars = Rules.RecipeStars(result.recipeScore, result.bakeScore, result.total), headline = "@tutorial.done", combo = s.combo }
+		s.result, s.phase, s.message = result, "result", ""
+		return
+	end
 	local oldRank = Rules.Rank(p.xp)
 	local best = p.recipeBest[s.recipeId] or { score = 0, stars = 0 }
 	local previous = best.score
@@ -160,7 +191,7 @@ local function rememberResult(player, s, result, elapsed)
 		p.dailyBest = { day = s.contract.dayKey, score = math.max(previous, result.total) }
 	end
 	local combo = s.combo or 0
-	local reward = Rules.Reward(result, s.mode, combo, result.personalBest)
+	local reward = Rules.Reward(result, s.mode == "challenge" and "practice" or s.mode, combo, result.personalBest)
 	result.reward = reward
 	s.combo = reward.nextCombo or 0
 	p.bestCombo = math.max(p.bestCombo, s.combo)
@@ -170,7 +201,7 @@ local function rememberResult(player, s, result, elapsed)
 		local newStars = math.max(best.stars, reward.stars)
 		p.totalStars += newStars - best.stars
 		p.recipeBest[s.recipeId] = { score = math.max(best.score, result.total), stars = newStars }
-		if s.contract and s.mode ~= "daily" and result.total >= (s.contract.goal or 80) then
+		if s.contract and s.mode ~= "daily" and s.mode ~= "challenge" and result.total >= (s.contract.goal or 80) then
 			reward.contractBonus = s.contract.bonusXP or 0
 			reward.xp += reward.contractBonus
 		end
@@ -223,10 +254,11 @@ local function serve(player, timedOut)
 	if not s or s.phase == "result" then return end
 	local elapsed = math.max(0, now() - s.startedAt)
 	if s.phase == "ready" then
-		local result = Recipes.Score(s.recipeId, s.ingredients, s.bakeQuality, elapsed)
+		local result = Recipes.Score(s.recipeId, s.ingredients, math.min(100, s.bakeQuality + s.turnBonus), elapsed)
+		result.turnBonus, result.perfectTurn = s.turnBonus, s.perfectTurn
 		rememberResult(player, s, result, elapsed)
 	elseif timedOut then
-		rememberResult(player, s, zeroResult(s, "Час вичерпано! Потрібно завершити випікання й подати піцу до кінця раунду."), elapsed)
+		rememberResult(player, s, zeroResult(s, "@server.timeout"), elapsed)
 	end
 end
 
@@ -279,7 +311,7 @@ local function resetRoom()
 		if s and player.Parent == Players then
 			room.members[userId] = { player = player, name = player.DisplayName, done = false }
 			s.queued, s.roomMember = false, true
-			s.phase, s.mode, s.message = "menu", "competition", "Очікуємо другого кухаря…"
+			s.phase, s.mode, s.message = "menu", "competition", "@server.waiting"
 		end
 	end
 end
@@ -292,7 +324,7 @@ local function leaveRoom(player, disconnected)
 		if room.phase == "active" and not entry.done then
 			entry.forfeited, entry.done = true, true
 			entry.elapsed = s and math.max(0, now() - s.startedAt) or 0
-			entry.result = s and zeroResult(s, "Ти залишив змагання. За цей раунд зараховано поразку.") or nil
+			entry.result = s and zeroResult(s, "@server.forfeit") or nil
 		elseif room.phase == "waiting" or room.phase == "countdown" then
 			room.members[player.UserId] = nil
 		end
@@ -312,17 +344,17 @@ local function joinRoom(player)
 	if s.roomMember or s.queued then return end
 	-- A forfeited player cannot rejoin the same round or replace their result.
 	if room.phase == "active" or room.phase == "finished" then
-		if count(room.queue) >= Settings.MaxPlayers then s.message = "Наступна кімната вже повна. Спробуй трохи пізніше." return end
+		if count(room.queue) >= Settings.MaxPlayers then s.message = "@server.queue_full" return end
 		room.queue[player.UserId] = player
 		s.shift, s.contract = nil, nil
-		s.queued, s.phase, s.mode, s.message = true, "menu", "competition", "Ти в черзі на наступний раунд. Поточне змагання ще триває."
+		s.queued, s.phase, s.mode, s.message = true, "menu", "competition", "@server.queued"
 		return
 	end
-	if count(room.members) >= Settings.MaxPlayers then s.message = "Кімната вже повна: 6 кухарів." return end
+	if count(room.members) >= Settings.MaxPlayers then s.message = "@server.room_full" return end
 	room.members[player.UserId] = { player = player, name = player.DisplayName, done = false }
 	s.shift, s.contract = nil, nil
 	s.roomMember, s.queued = true, false
-	s.phase, s.mode, s.result, s.message = "menu", "competition", nil, "Очікуємо другого кухаря…"
+	s.phase, s.mode, s.result, s.message = "menu", "competition", nil, "@server.waiting"
 end
 
 local function startShiftOrder(s)
@@ -330,6 +362,45 @@ local function startShiftOrder(s)
 	beginPizza(s, "shift", contract.recipeId, now(), now() + contract.duration, contract)
 end
 local function isCompeting(s) return s.roomMember and room.phase == "active" end
+local function loadChallenge(player, code)
+	local s = sessions[player]
+	if not s or shuttingDown then return end
+	if s.challengeBusy then s.challengeStatus = "@challenge.wait" return end
+	if now() < s.nextChallengeRead then s.challengeStatus = "@challenge.wait" return end
+	local id = Challenges.Code(code)
+	if not id then s.challengeStatus = "@challenge.invalid_code" return end
+	s.nextChallengeRead, s.challengeBusy, s.challengeStatus = now() + 2, true, "@challenge.loading"
+	local ok, record, err = pcall(function() return challengeStore:Load(id) end)
+	if sessions[player] ~= s then return end
+	s.challengeBusy = false
+	if shuttingDown then return end
+	if ok and record then s.pendingChallenge, s.challengeStatus = record, "@challenge.ready"
+	else s.challengeStatus = ok and err or "@challenge.unavailable" end
+end
+
+local function createChallenge(player)
+	local s = sessions[player]
+	if not s or s.challengeBusy or s.phase ~= "result" or s.mode == "tutorial" then return end
+	local result = s.result
+	if not result or result.total < 50 or result.recipeScore < 50 or result.elapsed > 86400 then s.challengeStatus = "@challenge.ineligible" return end
+	if s.shareChallenge and s.shareChallenge.expiresAt > os.time() then return end
+	if now() < s.nextChallengeWrite then s.challengeStatus = "@challenge.wait" return end
+	s.nextChallengeWrite, s.challengeBusy, s.challengeStatus = now() + 10, true, "@challenge.saving"
+	local conditions = result.conditions
+	local source = { recipeId = result.recipeId, recipeSignature = Challenges.RecipeSignature(Recipes.ById[result.recipeId]),
+		creatorId = player.UserId, creatorName = player.DisplayName, score = result.total, quality = result.quality,
+		recipeScore = result.recipeScore, bakeScore = result.bakeScore, stars = result.reward.stars,
+		elapsed = result.elapsed, ingredients = copyIngredients(result.ingredients), turned = s.turned,
+		duration = conditions.duration, heatMultiplier = conditions.heatMultiplier, temperatureBand = conditions.temperatureBand }
+	local ok, record, err = pcall(function() return challengeStore:Create(source) end)
+	if sessions[player] ~= s then return end
+	s.challengeBusy = false
+	-- An asynchronous save cannot attach an old score to a newer pizza.
+	if shuttingDown or s.result ~= result then return end
+	if ok and record then s.shareChallenge, s.challengeStatus = record, "@challenge.saved"
+	else s.challengeStatus = ok and err or "@challenge.unavailable" end
+end
+
 local function handleAction(player, action, argument)
 	local s = sessions[player]
 	if not s or shuttingDown or type(action) ~= "string" then return end
@@ -344,18 +415,56 @@ local function handleAction(player, action, argument)
 	end
 	s.message = ""
 	if s.profile.status == "loading" and action ~= "Menu" and action ~= "LeaveRoom" then
-		s.message = "Завантажуємо твою книгу майстерності…"
+		s.message = "@server.loading"
+		if action == "CreateChallenge" or action == "LookupChallenge" then
+			s.challengeRevision = (s.challengeRevision or 0) + 1
+			s.challengeStatus = "@server.loading"
+		end
 		return
 	end
-	if action == "LeaveRoom" then
+	if action == "CreateChallenge" then
+		s.challengeRevision = (s.challengeRevision or 0) + 1
+		createChallenge(player)
+	elseif action == "LookupChallenge" then
+		s.challengeRevision = (s.challengeRevision or 0) + 1
+		loadChallenge(player, argument)
+	elseif action == "AcceptChallenge" then
+		if isCompeting(s) then s.message = "@server.in_round" return end
+		local candidate = s.pendingChallenge
+		if not candidate or argument ~= candidate.id then s.message = "@challenge.not_found" return end
+		local record, err = Challenges.Validate(candidate, Recipes, os.time())
+		if not record then s.pendingChallenge, s.message = nil, err return end
+		leaveRoom(player, false)
+		local contract = { id = "friend_challenge", name = "@challenge.title", description = "@challenge.same_rules",
+			duration = record.duration, heatMultiplier = record.heatMultiplier, temperatureBand = record.temperatureBand,
+			goal = record.score, bonusXP = 0 }
+		beginPizza(s, "challenge", record.recipeId, time, record.duration > 0 and time + record.duration or 0, contract)
+		s.activeChallenge = record
+	elseif action == "RetryChallenge" then
+		if s.mode ~= "challenge" or s.phase ~= "result" or not s.activeChallenge then return end
+		local record = s.activeChallenge
+		local contract = s.contract
+		-- A started challenge can be retried only while its invitation is still valid.
+		if record.expiresAt <= os.time() then s.message = "@challenge.expired" return end
+		beginPizza(s, "challenge", record.recipeId, time, record.duration > 0 and time + record.duration or 0, contract)
+		s.activeChallenge = record
+	elseif action == "LeaveRoom" then
 		leaveRoom(player, false)
 	elseif action == "JoinRoom" then
 		joinRoom(player)
-	elseif action == "Menu" or action == "StartPractice" or action == "StartShift" or action == "StartDaily" then
-		if isCompeting(s) then s.message = "Дочекайся кінця раунду або вийди зі змагання." return end
+	elseif action == "Menu" or action == "StartPractice" or action == "StartShift" or action == "StartDaily" or action == "StartTutorial" or action == "SkipTutorial" then
+		if isCompeting(s) then s.message = "@server.in_round" return end
 		if action == "StartPractice" and argument ~= nil and not validRecipe(argument) then return end
+		if action == "SkipTutorial" then
+			s.profile.data.tutorialDismissed = true
+			action = "StartShift"
+		elseif action == "StartShift" and Tutorial.NeedsIntroduction(s.profile.data) then
+			action = "StartTutorial"
+		end
 		leaveRoom(player, false)
-		if action == "StartPractice" then
+		if action == "StartTutorial" then
+			beginPizza(s, "tutorial", Tutorial.RecipeId, time, 0)
+		elseif action == "StartPractice" then
 			beginPizza(s, "practice", argument or s.recipeId, time, 0)
 		elseif action == "StartShift" then
 			s.shiftSerial += 1
@@ -377,9 +486,10 @@ local function handleAction(player, action, argument)
 		if s.phase == "menu" or (s.mode == "practice" and s.phase == "prep") then s.recipeId = argument end
 	elseif action == "Add" then
 		if s.phase ~= "prep" or type(argument) ~= "string" or not ingredientIds[argument] then return end
+		if s.mode == "tutorial" and argument ~= Tutorial.NextIngredient(s.ingredients, Recipes.ById[s.recipeId].ingredients) then return end
 		local total = 0
 		for _, amount in pairs(s.ingredients) do total += amount end
-		if total >= Settings.MaxIngredients then s.message = "На піці забагато начинки! Спочатку прибери один інгредієнт." return end
+		if total >= Settings.MaxIngredients then s.message = "@server.toppings_full" return end
 		local amount = s.ingredients[argument] or 0
 		if amount < Settings.MaxPerIngredient then s.ingredients[argument] = amount + 1 end
 	elseif action == "Remove" then
@@ -390,7 +500,11 @@ local function handleAction(player, action, argument)
 		if s.phase == "prep" then s.ingredients = {} end
 	elseif action == "Bake" then
 		if s.phase ~= "prep" then return end
-		if next(s.ingredients) == nil then s.message = "Спочатку додай інгредієнти, а потім відправляй піцу в піч." return end
+		if s.mode == "tutorial" and not Cooking.Checklist(Recipes.ById[s.recipeId].ingredients, s.ingredients).ready then
+			s.message = "@tutorial.finish_recipe"
+			return
+		end
+		if next(s.ingredients) == nil then s.message = "@server.empty" return end
 		local recipe = Recipes.ById[s.recipeId]
 		s.phase, s.bakeElapsed, s.bakeIntegral, s.bakeQuality = "bake", 0, 0, 0
 		s.bakeDuration = recipe.bakeTime
@@ -398,6 +512,15 @@ local function handleAction(player, action, argument)
 		s.heat = math.clamp((recipe.temperature - Settings.MinTemperature) / (Settings.MaxTemperature - Settings.MinTemperature), 0, 1)
 	elseif action == "Heat" then
 		if s.phase == "bake" and finite(argument) then s.heat = math.clamp(argument, 0, 1) end
+	elseif action == "Turn" then
+		if s.phase ~= "bake" then return end
+		local turn = Cooking.Turn(s.bakeElapsed, s.bakeDuration, s.turned)
+		if turn then
+			s.turned, s.turnBonus, s.perfectTurn = true, turn.bonus, turn.perfect
+			s.message = turn.label
+		elseif not s.turned then
+			s.message = s.bakeElapsed < s.bakeDuration * Cooking.TurnCenter and "@server.turn_early" or "@server.turn_late"
+		end
 	elseif action == "Serve" then
 		if s.phase == "ready" then serve(player, false) checkFinished() end
 	end
@@ -453,7 +576,26 @@ local function playerAdded(player)
 		end
 	end
 end
-Players.PlayerAdded:Connect(playerAdded)
+local function readChallengeInvite(player)
+	local s = sessions[player]
+	for attempt = 1, 6 do
+		if sessions[player] ~= s or shuttingDown then return end
+		local ok, joined = pcall(function() return player:GetJoinData() end)
+		local code = ok and type(joined) == "table" and Challenges.LaunchCode(joined.LaunchData)
+		if code then
+			loadChallenge(player, code)
+			if sessions[player] == s then State:FireClient(player, snapshot(player)) end
+			return
+		end
+		if not ok then return end
+		task.wait(1)
+	end
+end
+local function joinedPlayer(player)
+	playerAdded(player)
+	task.spawn(readChallengeInvite, player)
+end
+Players.PlayerAdded:Connect(joinedPlayer)
 Players.PlayerRemoving:Connect(function(player)
 	leaveRoom(player, true)
 	local s = sessions[player]
@@ -461,7 +603,7 @@ Players.PlayerRemoving:Connect(function(player)
 	if s then retireProfile(s.profile) end
 	publishAll()
 end)
-for _, player in ipairs(Players:GetPlayers()) do playerAdded(player) end
+for _, player in ipairs(Players:GetPlayers()) do joinedPlayer(player) end
 
 local broadcastElapsed, saveElapsed = 0, 0
 RunService.Heartbeat:Connect(function(dt)
@@ -484,10 +626,10 @@ RunService.Heartbeat:Connect(function(dt)
 			s.bakeElapsed += used
 			s.bakeQuality = s.bakeElapsed > 0 and (s.bakeIntegral / s.bakeElapsed * 100) or 0
 			if s.bakeElapsed >= s.bakeDuration then
-				s.phase, s.message = "ready", "Щойно з печі! Подавай піцу шефу Луці."
+				s.phase, s.message = "ready", "@server.ready"
 			end
 		end
-		if (s.mode == "shift" or s.mode == "daily") and s.deadline > 0 and time >= s.deadline and s.phase ~= "result" then
+		if (s.mode == "shift" or s.mode == "daily" or s.mode == "challenge") and s.deadline > 0 and time >= s.deadline and s.phase ~= "result" then
 			serve(player, true)
 		end
 	end

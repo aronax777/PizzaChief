@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-17",
+  "environment": "Roblox Studio Client",
+  "passed": 8,
+  "checks": [
+    "Underlying button excluded",
+    "Lookup focuses code input",
+    "Modal traps selection",
+    "Poster scrolling frame not selectable",
+    "Lookup response focuses Accept",
+    "Close restores background selection",
+    "Close restores previous focus",
+    "External destruction restores selection"
+  ]
+}

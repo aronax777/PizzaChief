@@ -1,0 +1,3 @@
+-- Run on the real client with a challenge card open on a mobile layout.
+local g=game.Players.LocalPlayer.PlayerGui.PizzaChiefUI;local o=g.Canvas:FindFirstChild('ChallengeOverlay');assert(o,'Challenge overlay missing');local issues={};local count=0;for _,v in o:GetDescendants()do if v:IsA('TextLabel')or v:IsA('TextButton')then count+=1;if not v.TextFits or v.Text:find('@[%w_]+%.') or v.Text:find('{[%w_]+}')then table.insert(issues,{path=v.Name,text=v.Text,fits=v.TextFits})end;if v:IsA('TextButton')and(v.AbsoluteSize.X<43 or v.AbsoluteSize.Y<43)then table.insert(issues,{button=v.Name,size=tostring(v.AbsoluteSize)})end end end;return {locale=g:GetAttribute('ResolvedLocale'),size=tostring(g.AbsoluteSize),texts=count,issues=issues}
+

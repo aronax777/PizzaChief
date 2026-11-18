@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-17",
+  "environment": "Roblox Player on macOS, published PRIVATE experience",
+  "universeId": 10775017458,
+  "placeId": 100802426129317,
+  "publishedVersion": 5,
+  "publicationEvidence": {
+    "v4": "2026-11-17T19:59:37Z",
+    "v5": "2026-11-17T20:15:20Z",
+    "studioLog": "0.748.0.7481526_20261117T194800Z_Studio_b1a17_last.log",
+    "signals": [
+      "PublishSuccessful",
+      "Add publish notes to v5"
+    ]
+  },
+  "visibilityReadback": "PRIVATE",
+  "account": "AronaxDad",
+  "challenge": {
+    "code": "8D239F22212C",
+    "score": 94.2,
+    "creationServer": "682c776e-4e70-4ea7-a8fb-ce23736d0fe1",
+    "lookupServer": "59386d38-b49e-45a8-860e-56b3cd1efcdc",
+    "acceptanceServer": "63dcf18c-4536-48e8-b4c0-1e99143f70ba",
+    "acceptedThroughUI": true,
+    "completedThroughUI": true,
+    "responseScore": 75.8,
+    "responseCode": "67FF3F54CC0F",
+    "profileXpBefore": 21,
+    "profileXpAfter": 34,
+    "proof": "screenshots/challenges/live-cross-server-accepted.png"
+  },
+  "invitations": {
+    "route": "Roblox Player game details > Invite Friends",
+    "recipients": [
+      {
+        "username": "BopoHDark0",
+        "observedButton": "Invited"
+      },
+      {
+        "username": "alaim66665",
+        "observedButton": "Invited"
+      },
+      {
+        "username": "firecat102014",
+        "observedButton": "Invited"
+      }
+    ],
+    "proof": "screenshots/challenges/live-invited-three.png",
+    "challengeLaunchDataVerified": false,
+    "recipientReceiptVerified": false
+  },
+  "capture": {
+    "nativePromptOpened": true,
+    "previewScore": 75.8,
+    "previewCode": "67FF3F54CC0F",
+    "controlsHiddenInPreview": true,
+    "selectionOutlineAbsentInPreview": true,
+    "gallerySaveVerified": true,
+    "status": "User clicked native Save; agent opened Gallery and visually verified the saved Margherita card scored 75.8.",
+    "proof": "screenshots/challenges/live-gallery-saved.png",
+    "galleryCount": 1,
+    "galleryDisplayedSize": "1 MB",
+    "saveActionPerformedBy": "user",
+    "verificationPerformedBy": "agent via Roblox Gallery UI",
+    "promptProof": "screenshots/challenges/live-capture-save-prompt.png"
+  },
+  "limitations": [
+    "Cross-server acceptance used the same owner account.",
+    "Friend acceptance and invitation LaunchData delivery not yet observed."
+  ],
+  "builds": {
+    "PizzaChief.rbxlx": "36423ef2e5d9f50f7003037fc00b5657e44519d94446a497fe9ee8ce8abb557c",
+    "dist/PizzaChief.rbxlx": "36423ef2e5d9f50f7003037fc00b5657e44519d94446a497fe9ee8ce8abb557c"
+  }
+}

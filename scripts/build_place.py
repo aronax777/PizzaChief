@@ -126,14 +126,27 @@ def scene_item(parent: ET.Element, entry: dict, counter: list[int], ref: str | N
 
 
 def build(output: Path, scene_path: Path | None = None) -> None:
+    from build_locales import build as build_locales
+    build_locales()
     sources = {
+        "Localization": (ROOT / "src/shared/Localization.luau").read_bytes(),
+        "LocaleCatalog": (ROOT / "src/shared/LocaleCatalog.luau").read_bytes(),
         "Recipes": (ROOT / "src/shared/Recipes.luau").read_bytes(),
         "GameRules": (ROOT / "src/shared/GameRules.luau").read_bytes(),
+        "Cooking": (ROOT / "src/shared/Cooking.luau").read_bytes(),
+        "Tutorial": (ROOT / "src/shared/Tutorial.luau").read_bytes(),
+        "Challenges": (ROOT / "src/shared/Challenges.luau").read_bytes(),
+        "ChallengeUI": (ROOT / "src/shared/ChallengeUI.luau").read_bytes(),
+        "ChallengeStore": (ROOT / "src/server/ChallengeStore.luau").read_bytes(),
+        "MobileLayout": (ROOT / "src/shared/MobileLayout.luau").read_bytes(),
+        "IngredientArt": (ROOT / "src/shared/IngredientArt.luau").read_bytes(),
+        "IngredientPixels": (ROOT / "src/shared/IngredientPixels.luau").read_bytes(),
         "ProfileStore": (ROOT / "src/server/ProfileStore.luau").read_bytes(),
         "GameServer": (ROOT / "src/server/GameServer.server.luau").read_bytes(),
         "PizzaClient": (ROOT / "src/client/PizzaClient.client.luau").read_bytes(),
         "BuildWorld": (ROOT / "src/studio/BuildWorld.luau").read_bytes(),
     }
+    sources.update({path.stem: path.read_bytes() for path in sorted((ROOT / "src/shared").glob("Locale_*.luau"))})
     text = {name: content.decode("utf-8") for name, content in sources.items()}
     root = ET.Element("roblox", {"version": "4"})
     ET.SubElement(root, "External").text = "null"
@@ -158,8 +171,14 @@ def build(output: Path, scene_path: Path | None = None) -> None:
     shared = item(replicated, "Folder", "PizzaChief", "RBX_PizzaChief")
     script(shared, "ModuleScript", "Recipes", "RBX_Recipes", text["Recipes"])
     script(shared, "ModuleScript", "GameRules", "RBX_GameRules", text["GameRules"])
+    for name in ("Cooking", "Tutorial", "Challenges", "ChallengeUI", "MobileLayout", "IngredientArt", "IngredientPixels", "Localization", "LocaleCatalog"):
+        script(shared, "ModuleScript", name, "RBX_" + name, text[name])
+    for name in sorted(sources):
+        if name.startswith("Locale_"):
+            script(shared, "ModuleScript", name, "RBX_" + name, text[name])
     server = item(root, "ServerScriptService", "ServerScriptService", "RBX_ServerScriptService")
     script(server, "ModuleScript", "ProfileStore", "RBX_ProfileStore", text["ProfileStore"])
+    script(server, "ModuleScript", "ChallengeStore", "RBX_ChallengeStore", text["ChallengeStore"])
     script(server, "Script", "GameServer", "RBX_GameServer", BOOTSTRAP + text["GameServer"])
     storage = item(root, "ServerStorage", "ServerStorage", "RBX_ServerStorage")
     script(storage, "ModuleScript", "BuildWorld", "RBX_BuildWorld", text["BuildWorld"])
@@ -167,8 +186,8 @@ def build(output: Path, scene_path: Path | None = None) -> None:
     player_scripts = item(starter, "StarterPlayerScripts", "StarterPlayerScripts", "RBX_StarterPlayerScripts")
     script(player_scripts, "LocalScript", "PizzaClient", "RBX_PizzaClient", text["PizzaClient"])
     gui = item(root, "StarterGui", "StarterGui", "RBX_StarterGui")
-    # Verified against Enum.ScreenOrientation.LandscapeSensor.Value in Studio.
-    prop(properties(gui), "token", "ScreenOrientation", "2")
+    # Verified against Enum.ScreenOrientation.Sensor.Value in Studio.
+    prop(properties(gui), "token", "ScreenOrientation", "4")
     item(root, "SoundService", "SoundService", "RBX_SoundService")
     output.parent.mkdir(parents=True, exist_ok=True)
     ET.ElementTree(root).write(output, encoding="utf-8", xml_declaration=True)

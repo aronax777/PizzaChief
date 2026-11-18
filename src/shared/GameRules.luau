@@ -6,14 +6,14 @@ Rules.ShiftLength = 3
 Rules.MaxCombo = 5
 
 local ranks = {
-	{xp=0, title="Учень піцайоло", recipes=6},
-	{xp=100, title="Молодий кухар", recipes=8},
-	{xp=260, title="Майстер тіста", recipes=10},
-	{xp=500, title="Приборкувач вогню", recipes=12},
-	{xp=850, title="Шеф зміни", recipes=14},
-	{xp=1300, title="Піцайоло", recipes=16},
-	{xp=1900, title="Маестро смаку", recipes=18},
-	{xp=2700, title="Легенда кухні", recipes=20},
+	{xp=0, title="@rank.1", recipes=6},
+	{xp=100, title="@rank.2", recipes=8},
+	{xp=260, title="@rank.3", recipes=10},
+	{xp=500, title="@rank.4", recipes=12},
+	{xp=850, title="@rank.5", recipes=14},
+	{xp=1300, title="@rank.6", recipes=16},
+	{xp=1900, title="@rank.7", recipes=18},
+	{xp=2700, title="@rank.8", recipes=20},
 }
 local function finite(value)
 	return type(value)=="number" and value==value and math.abs(value)<math.huge
@@ -46,9 +46,9 @@ function Rules.RecipeStars(recipeScore,bakeScore,total)
 end
 
 local contracts={
-	{id="classic",name="Чиста класика",description="Перший гість чекає на точний рецепт. Збери збалансовану піцу.",duration=90,heatMultiplier=1,temperatureBand=25,bonusXP=10,goal=70},
-	{id="wild_oven",name="Неслухняна піч",description="Жар стрибає сильніше. Слідкуй за бігунком і тримай температуру в зеленій зоні.",duration=80,heatMultiplier=1.35,temperatureBand=22,bonusXP=15,goal=75},
-	{id="rush",name="Година пік",description="Останнє замовлення зміни: точність під тиском часу. Подавай без зволікань!",duration=65,heatMultiplier=1.15,temperatureBand=23,bonusXP=25,goal=80},
+	{id="classic",name="@contract.classic",description="@contract.classic.description",duration=90,heatMultiplier=1,temperatureBand=25,bonusXP=10,goal=70},
+	{id="wild_oven",name="@contract.wild_oven",description="@contract.wild_oven.description",duration=80,heatMultiplier=1.35,temperatureBand=22,bonusXP=15,goal=75},
+	{id="rush",name="@contract.rush",description="@contract.rush.description",duration=65,heatMultiplier=1.15,temperatureBand=23,bonusXP=25,goal=80},
 }
 local function hash(seed)
 	local normalized=math.floor(math.abs(number(seed)))%2147483647
@@ -78,8 +78,8 @@ function Rules.Daily(dayKey,Recipes)
 	local template=contracts[(choice%#contracts)+1]
 	local result=copyContract(template,Recipes.List[(hash(day+7919)%#Recipes.List)+1].id)
 	result.id="daily_"..tostring(day)
-	result.name="Виклик дня: "..template.name
-	result.description=template.description.." Однакові умови для всіх; спроби необмежені."
+	result.name={key="contract.daily",params={name=template.name}}
+	result.description={key="contract.daily.description",params={description=template.description}}
 	result.duration=90
 	result.bonusXP=60
 	result.goal=85
@@ -90,7 +90,7 @@ function Rules.Reward(result,mode,combo,isPB)
 	result=type(result)=="table" and result or {}
 	local total,recipe,bake=score(result.total),score(result.recipeScore),score(result.bakeScore)
 	if total<50 or recipe<50 then
-		return {xp=0,combo=0,nextCombo=0,stars=0,headline="Нова спроба — новий шанс. Перевір рецепт і жар."}
+		return {xp=0,combo=0,nextCombo=0,stars=0,headline="@reward.retry"}
 	end
 	local previous=math.clamp(math.floor(number(combo)),0,Rules.MaxCombo)
 	local nextCombo=total>=80 and math.min(previous+1,Rules.MaxCombo) or 0
@@ -99,26 +99,26 @@ function Rules.Reward(result,mode,combo,isPB)
 	xp=math.clamp(xp,12,45)
 	if mode=="practice" then xp=math.max(6,math.floor(xp*.55)) end
 	local headline
-	if isPB then headline="Новий особистий рекорд!"
-	elseif stars==3 then headline="Три зірки! Шеф аплодує."
-	elseif nextCombo>=3 then headline="Серія "..nextCombo.."! Ти тримаєш ритм."
-	elseif stars==2 then headline="Чудова піца. До третьої зірки — один крок."
-	else headline="Замовлення виконано. Спробуй точніший рецепт!" end
+	if isPB then headline="@reward.pb"
+	elseif stars==3 then headline="@reward.three"
+	elseif nextCombo>=3 then headline={key="reward.combo",params={count=nextCombo}}
+	elseif stars==2 then headline="@reward.two"
+	else headline="@reward.one" end
 	return {xp=xp,combo=nextCombo,nextCombo=nextCombo,stars=stars,headline=headline}
 end
 
 function Rules.Badges(profile)
 	profile=type(profile)=="table" and profile or {}
 	local checks={
-		{id="first_service",name="Перша подача",description="Заверши перше вдале замовлення.",field="completed",target=1},
-		{id="busy_kitchen",name="Кухня працює",description="Виконай 10 вдалих замовлень.",field="completed",target=10},
-		{id="star_collector",name="Колекціонер смаків",description="Збери 12 зірок майстерності рецептів.",field="totalStars",target=12},
-		{id="recipe_atlas",name="Атлас піци",description="Збери 45 зірок майстерності рецептів.",field="totalStars",target=45},
-		{id="golden_touch",name="Золоті руки",description="Приготуй першу піцу на три зірки.",field="perfects",target=1},
-		{id="on_fire",name="У ритмі",description="Зроби серію з 5 піц із результатом від 80 балів.",field="bestCombo",target=5},
-		{id="shift_leader",name="Шеф зміни",description="Заверши зміну з результатом від 150 балів.",field="shiftFinishes",target=1},
-		{id="battle_champion",name="Чемпіон кухні",description="Виграй Pizza Battle.",field="battleWins",target=1},
-		{id="daily_special",name="Особлива страва",description="Виконай ціль виклику дня.",field="dailyClears",target=1},
+		{id="first_service",name="@badge.first_service",description="@badge.first_service.description",field="completed",target=1},
+		{id="busy_kitchen",name="@badge.busy_kitchen",description="@badge.busy_kitchen.description",field="completed",target=10},
+		{id="star_collector",name="@badge.star_collector",description="@badge.star_collector.description",field="totalStars",target=12},
+		{id="recipe_atlas",name="@badge.recipe_atlas",description="@badge.recipe_atlas.description",field="totalStars",target=45},
+		{id="golden_touch",name="@badge.golden_touch",description="@badge.golden_touch.description",field="perfects",target=1},
+		{id="on_fire",name="@badge.on_fire",description="@badge.on_fire.description",field="bestCombo",target=5},
+		{id="shift_leader",name="@badge.shift_leader",description="@badge.shift_leader.description",field="shiftFinishes",target=1},
+		{id="battle_champion",name="@badge.battle_champion",description="@badge.battle_champion.description",field="battleWins",target=1},
+		{id="daily_special",name="@badge.daily_special",description="@badge.daily_special.description",field="dailyClears",target=1},
 	}
 	local earned={}
 	for _,badge in ipairs(checks) do

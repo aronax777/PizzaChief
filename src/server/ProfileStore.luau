@@ -12,12 +12,14 @@ local function number(value, maximum)
 	return math.clamp(value, 0, maximum or 100000000)
 end
 function Store.NewProfile()
-	return { version = 2, xp = 0, completed = 0, perfects = 0, battleWins = 0, bestCombo = 0,
+	return { version = 2, tutorialCompleted = false, tutorialDismissed = false, xp = 0, completed = 0, perfects = 0, battleWins = 0, bestCombo = 0,
 		shiftFinishes = 0, dailyClears = 0, bestShift = 0, lastDailyDay = 0, recipeBest = {}, dailyBest = { day = 0, score = 0 }, totalStars = 0 }
 end
 local function sanitize(raw)
 	local result = Store.NewProfile()
 	if type(raw) ~= "table" then return result end
+	result.tutorialCompleted = raw.tutorialCompleted == true
+	result.tutorialDismissed = raw.tutorialDismissed == true
 	for _, field in ipairs(numericFields) do result[field] = number(raw[field]) end
 	result.bestCombo = math.min(5, result.bestCombo)
 	result.bestShift = math.min(300, result.bestShift)

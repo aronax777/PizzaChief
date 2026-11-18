@@ -1,0 +1,79 @@
+[
+  {
+    "file": "game-icon-512.png",
+    "width": 512,
+    "height": 512,
+    "source": "source/icon-original.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustrated-cover"
+  },
+  {
+    "file": "game-icon-1024.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "source/icon-original.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "kind": "illustrated-cover"
+  },
+  {
+    "file": "thumbnail-hero-1920x1080.png",
+    "width": 1920,
+    "height": 1080,
+    "source": "source/hero-original.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "kind": "illustrated-cover"
+  },
+  {
+    "file": "preview-gameplay-1920x1080.png",
+    "width": 1920,
+    "height": 1080,
+    "source": "source/gameplay-prep.jpg",
+    "sourceSize": [
+      1542,
+      866
+    ],
+    "kind": "actual-gameplay"
+  },
+  {
+    "file": "preview-oven-1920x1080.png",
+    "width": 1920,
+    "height": 1080,
+    "source": "source/gameplay-oven.jpg",
+    "sourceSize": [
+      1542,
+      866
+    ],
+    "kind": "actual-gameplay"
+  },
+  {
+    "file": "preview-gameplay-en-1920x1080.png",
+    "width": 1920,
+    "height": 1080,
+    "source": "source/gameplay-prep-en.jpg",
+    "sourceSize": [
+      1920,
+      1079
+    ],
+    "kind": "actual-gameplay"
+  },
+  {
+    "file": "preview-oven-en-1920x1080.png",
+    "width": 1920,
+    "height": 1080,
+    "source": "source/gameplay-oven-en.jpg",
+    "sourceSize": [
+      1920,
+      1079
+    ],
+    "kind": "actual-gameplay"
+  }
+]

@@ -47,6 +47,7 @@ suffix = r'''
 end)()
 local checks = {}
 local function check(ok, detail)assert(ok,detail);table.insert(checks,detail)end
+check(not Store.NewProfile().tutorialCompleted and not Store.NewProfile().tutorialDismissed, 'New profile offers tutorial')
 TestStudio=true
 local localProfile=Store.Create(1);local before=calls
 Store.Load(localProfile);localProfile.data.xp=500;Store.Save(localProfile,true)
@@ -87,6 +88,13 @@ c.data.xp=180;check(Store.Save(c,true) and not c.writable and records.player_2._
     'Release saves the final profile and removes ownership')
 local d=Store.Create(2);Store.Load(d)
 check(d.writable and d.data.xp==180, 'A released profile loads immediately into another session')
+d.data.tutorialCompleted=true;d.data.tutorialDismissed=true
+check(Store.Save(d,true), 'Tutorial flags save through the existing lease')
+local tutorialReload=Store.Create(2);Store.Load(tutorialReload)
+check(tutorialReload.data.tutorialCompleted and tutorialReload.data.tutorialDismissed, 'Tutorial completion and skip survive profile reload')
+records.player_45={tutorialCompleted='true',tutorialDismissed=1}
+local invalidTutorial=Store.Create(45);Store.Load(invalidTutorial)
+check(not invalidTutorial.data.tutorialCompleted and not invalidTutorial.data.tutorialDismissed, 'Malformed tutorial flags do not suppress onboarding')
 records.player_3={xp=800}
 failures=true;local outage=Store.Create(3);Store.Load(outage);failures=false
 outage.data.xp=1;local n=calls;Store.Save(outage,true)

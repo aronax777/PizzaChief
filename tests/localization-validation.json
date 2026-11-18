@@ -1,0 +1,1401 @@
+{
+  "date": "2026-11-17",
+  "scope": "Local localization implementation; no publication, audience change, upload, commit or push.",
+  "static": {
+    "locales": 17,
+    "keysPerLocale": 280,
+    "translations": 4760,
+    "referencedKeys": 277,
+    "missingKeys": [],
+    "placeholderMismatches": [],
+    "sourceByteLimits": true
+  },
+  "catalogRuntime": {
+    "rendered": 4760,
+    "locales": 17,
+    "liveDataStoreAccess": false,
+    "passed": 9566,
+    "keys": 280
+  },
+  "isolatedRegression": {
+    "cooking": {
+      "liveDataStoreAccess": false,
+      "passed": 84,
+      "checks": [
+        "Async profile loading blocks every progression start and reward path",
+        "Invalid ingredients, premature serve and empty bake rejected",
+        "Non-finite oven input rejected",
+        "Practice completes through real scoring module",
+        "Active oven control improves baking over idle power",
+        "One chef waits without starting",
+        "Second chef starts countdown",
+        "Leaving countdown cancels it",
+        "Two chefs share recipe, start and deadline",
+        "Late arrival queues without entering current round",
+        "Active participant cannot switch modes to evade round",
+        "Serving locks result while another chef remains active",
+        "Deadline scores unfinished pizza zero and declares correct winner",
+        "Queued chef enters fresh room after results interval",
+        "Completed standings persist after live room resets",
+        "Next competition starts independently",
+        "Disconnect forfeits without blocking remaining chef",
+        "Deadline auto-serves ready pizza and excludes forfeited chef",
+        "Battle replay queues with accurate membership",
+        "Queued chef can cancel cleanly",
+        "New profile is playable and honestly session-only in Studio",
+        "Career shift starts with one timed server-selected order",
+        "NextOrder cannot skip an unfinished order",
+        "Successful career pizza earns stars XP personal best and one completed order",
+        "Repeated Serve cannot duplicate XP or shift credit",
+        "NextOrder advances once and introduces the stronger oven challenge",
+        "Unfinished career order times out without XP and resets only the shift combo",
+        "Final shift order has a clear shorter deadline",
+        "Three orders finish the shift and preserve the aggregate personal best",
+        "A finished shift cannot advance or grant its completion reward twice",
+        "A worse replay never erases earned stars or personal records",
+        "Different players receive the same daily challenge",
+        "Daily personal best is independent of a perfect practice recipe record",
+        "First daily target clear grants the documented bonus once",
+        "Repeated daily challenge compares against its own earlier daily score",
+        "Daily replays keep normal XP without farming the daily or contract bonus",
+        "A new UTC day enables one new daily bonus",
+        "Career chefs can return to a fair battle room",
+        "New career modes cannot evade an active battle",
+        "Forfeiting a battle grants no progression reward",
+        "Career recipe pool remains fixed through shift order 1",
+        "Career recipe pool remains fixed through shift order 2",
+        "Career recipe pool remains fixed through shift order 3",
+        "A mid-shift rank increase does not change the current shift pool",
+        "Three excellent career orders form a three-pizza session combo",
+        "Returning to the menu preserves the earned session combo",
+        "A new shift continues the session combo",
+        "Five-pizza combo achievement is reachable across successive shifts",
+        "Shutdown freezes both automatic deadline rewards and remote gameplay before final snapshots",
+        "Early and late turns cannot earn a bonus",
+        "Already-turned pizza cannot earn a second bonus",
+        "Perfect and good turn windows have distinct rewards",
+        "Invalid turn times are rejected",
+        "Exact checklist ready: margherita",
+        "Exact checklist ready: marinara",
+        "Exact checklist ready: pepperoni",
+        "Exact checklist ready: diavola",
+        "Exact checklist ready: funghi",
+        "Exact checklist ready: prosciutto",
+        "Exact checklist ready: capricciosa",
+        "Exact checklist ready: quattro_formaggi",
+        "Exact checklist ready: carbonara",
+        "Exact checklist ready: hawaiian",
+        "Exact checklist ready: bbq_chicken",
+        "Exact checklist ready: vegetarian",
+        "Exact checklist ready: tonno_cipolla",
+        "Exact checklist ready: napoli",
+        "Exact checklist ready: pesto_chicken",
+        "Exact checklist ready: meat_feast",
+        "Exact checklist ready: prosciutto_funghi",
+        "Exact checklist ready: boscaiola",
+        "Exact checklist ready: rucola",
+        "Exact checklist ready: bianca",
+        "Unwanted toppings do not count toward required portions",
+        "Overfilling a required ingredient is visible",
+        "Turn rejected during preparation",
+        "Client cannot forge turn timing or bonus",
+        "Real server awards the perfect mid-bake turn",
+        "Client snapshot carries authoritative turn feedback",
+        "Repeated remote calls cannot stack turn rewards",
+        "Serving applies the turn bonus once and caps bake quality",
+        "New pizzas reset turn state",
+        "Good turn is accepted before the perfect window",
+        "Skipping a turn preserves a successful temperature-controlled bake"
+      ]
+    },
+    "progression": {
+      "passed": 48,
+      "checks": [
+        "Replay rules have an explicit schema version",
+        "New chefs begin with a manageable six-recipe career pool",
+        "Rank changes at the exact XP boundary",
+        "Veteran rank unlocks the entire career catalog",
+        "Shift stage 1 stays in unlocked pool and permits a complete bake",
+        "Shift stage 1 is deterministic for the same seed",
+        "Shift stage 2 stays in unlocked pool and permits a complete bake",
+        "Shift stage 2 is deterministic for the same seed",
+        "Shift stage 3 stays in unlocked pool and permits a complete bake",
+        "Shift stage 3 is deterministic for the same seed",
+        "Shift stages vary cooking pressure and time pressure",
+        "Non-finite and negative XP cannot produce invalid ranks",
+        "Non-finite contract inputs fall back to valid gameplay",
+        "Every chef receives the same daily contract",
+        "Next day's challenge remains a valid catalog recipe",
+        "A perfect pizza earns three stars",
+        "An unfinished pizza earns no stars",
+        "Three stars require both recipe fidelity and baking mastery",
+        "Perfect-looking totals cannot reward zero recipe fidelity",
+        "Non-finite result fields cannot grant XP",
+        "Failure gives no XP and resets only the current combo",
+        "Excellent cooking earns XP without unbounded combo growth",
+        "Practice remains rewarding while career challenges earn more",
+        "New profiles do not claim unearned achievements",
+        "Long-term skill goals award distinct achievements",
+        "Exact catalog profile matches margherita",
+        "Exact catalog profile matches marinara",
+        "Exact catalog profile matches pepperoni",
+        "Exact catalog profile matches diavola",
+        "Exact catalog profile matches funghi",
+        "Exact catalog profile matches prosciutto",
+        "Exact catalog profile matches capricciosa",
+        "Exact catalog profile matches quattro_formaggi",
+        "Exact catalog profile matches carbonara",
+        "Exact catalog profile matches hawaiian",
+        "Exact catalog profile matches bbq_chicken",
+        "Exact catalog profile matches vegetarian",
+        "Exact catalog profile matches tonno_cipolla",
+        "Exact catalog profile matches napoli",
+        "Exact catalog profile matches pesto_chicken",
+        "Exact catalog profile matches meat_feast",
+        "Exact catalog profile matches prosciutto_funghi",
+        "Exact catalog profile matches boscaiola",
+        "Exact catalog profile matches rucola",
+        "Exact catalog profile matches bianca",
+        "Every exact recipe preserves perfect fidelity bake and quality at ideal time",
+        "Every recipe rewards a faster real finish beyond its recipe-specific par",
+        "Three-star mastery stays reachable at a human-scale 35-second finish"
+      ]
+    },
+    "profile": {
+      "liveDataStoreAccess": false,
+      "passed": 21,
+      "checks": [
+        "Studio progression never contacts a DataStore",
+        "Published profile acquires an exclusive owner lease",
+        "Malformed stored numbers are sanitized and star totals are recomputed",
+        "Malformed daily records cannot introduce non-finite scores",
+        "A second live session cannot steal an unexpired real-epoch lease",
+        "A contended blank profile cannot overwrite durable progress",
+        "UpdateAsync callback retries do not duplicate XP or completions",
+        "Repeated autosaves are idempotent",
+        "A failed save preserves the last durable profile",
+        "A later autosave recovers from a transient failure",
+        "An expired abandoned lease can be safely acquired without losing progress",
+        "A stale owner cannot overwrite a newly acquired session",
+        "Release saves the final profile and removes ownership",
+        "A released profile loads immediately into another session",
+        "A failed initial load never writes a default profile over saved data",
+        "Fast rejoin retries a departing lease and loads the durable profile",
+        "Persistent contention has a bounded retry budget and never steals ownership",
+        "Release arriving during autosave writes a fresh final snapshot and releases the lease",
+        "Departure during an in-flight load releases a newly acquired lease immediately",
+        "A departed player never starts a new profile claim",
+        "A transient load outage recovers within the bounded loading window"
+      ]
+    },
+    "shutdown": {
+      "liveDataStoreAccess": false,
+      "sceneModified": false,
+      "passed": 4,
+      "checks": [
+        "PlayerRemoving removes gameplay state but retains a pending final-save registry entry",
+        "Last-player shutdown waits for an already-departing profile final save",
+        "Shutdown waits through an in-flight autosave then persists the latest final progress",
+        "A transient final-save failure is retried while shutdown is waiting"
+      ]
+    }
+  },
+  "isolatedRegressionTotal": 157,
+  "realClient": {
+    "persistence": "session",
+    "checks": [
+      "Server rejects empty bake with locale-neutral key",
+      "Current server error localizes after switching",
+      "Locale switch preserves order and toppings",
+      "Real oven starts",
+      "Actual server completes baking",
+      "Perfect turn survives locale changes",
+      "Actual serve earns a three-star-level score",
+      "Actual server grants three stars"
+    ],
+    "passed": 8,
+    "result": {
+      "total": 100,
+      "bakeScore": 100,
+      "recipeName": "Pepperoni",
+      "reward": {
+        "stars": 3,
+        "nextCombo": 1,
+        "unlocked": 0,
+        "combo": 1,
+        "leveledUp": false,
+        "newRank": "@rank.1",
+        "xp": 24,
+        "headline": "@reward.pb"
+      },
+      "personalBest": true,
+      "speed": 100,
+      "feedback": "@feedback.perfect",
+      "turnBonus": 6,
+      "delta": 100,
+      "quality": 100,
+      "previousBest": 0,
+      "perfectTurn": true,
+      "elapsed": 21.7,
+      "recipeScore": 100
+    },
+    "realClient": true,
+    "multiClient": false
+  },
+  "ui": {
+    "screens": {
+      "menu.final": {
+        "gameplayUnchanged": true,
+        "device": "ipad_10th_generation",
+        "locales": [
+          {
+            "locale": "en",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "uk",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "es",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "pt-br",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "fr",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "de",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "it",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "id",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "ja",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "ko",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "tr",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "vi",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "th",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "zh-hans",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "zh-hant",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "ar",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "hi",
+            "issues": [],
+            "textCount": 31
+          }
+        ],
+        "screen": "menu",
+        "viewport": "1179, 819"
+      },
+      "menu.latest": {
+        "gameplayUnchanged": true,
+        "device": "hd_1080",
+        "locales": [
+          {
+            "locale": "en",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "uk",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "es",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "pt-br",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "fr",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "de",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "it",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "id",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "ja",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "ko",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "tr",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "vi",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "th",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "zh-hans",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "zh-hant",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "ar",
+            "issues": [],
+            "textCount": 31
+          },
+          {
+            "locale": "hi",
+            "issues": [],
+            "textCount": 31
+          }
+        ],
+        "screen": "menu",
+        "viewport": "1919, 1079"
+      },
+      "prep.final": {
+        "gameplayUnchanged": true,
+        "device": "ipad_10th_generation",
+        "locales": [
+          {
+            "locale": "en",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "uk",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "es",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "pt-br",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "fr",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "de",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "it",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "id",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "ja",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "ko",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "tr",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "vi",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "th",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "zh-hans",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "zh-hant",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "ar",
+            "issues": [],
+            "textCount": 77
+          },
+          {
+            "locale": "hi",
+            "issues": [],
+            "textCount": 77
+          }
+        ],
+        "screen": "prep",
+        "viewport": "1179, 819"
+      },
+      "bake.final": {
+        "gameplayUnchanged": true,
+        "device": "hd_1080",
+        "locales": [
+          {
+            "locale": "en",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "uk",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "es",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "pt-br",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "fr",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "de",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "it",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "id",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "ja",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "ko",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "tr",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "vi",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "th",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "zh-hans",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "zh-hant",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "ar",
+            "issues": [],
+            "textCount": 56
+          },
+          {
+            "locale": "hi",
+            "issues": [],
+            "textCount": 56
+          }
+        ],
+        "screen": "bake",
+        "viewport": "1919, 1079"
+      },
+      "ready.final": {
+        "gameplayUnchanged": true,
+        "device": "hd_1080",
+        "locales": [
+          {
+            "locale": "en",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "uk",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "es",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "pt-br",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "fr",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "de",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "it",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "id",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "ja",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "ko",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "tr",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "vi",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "th",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "zh-hans",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "zh-hant",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "ar",
+            "issues": [],
+            "textCount": 54
+          },
+          {
+            "locale": "hi",
+            "issues": [],
+            "textCount": 54
+          }
+        ],
+        "screen": "ready",
+        "viewport": "1919, 1079"
+      },
+      "result.final": {
+        "gameplayUnchanged": true,
+        "device": "ipad_10th_generation",
+        "locales": [
+          {
+            "locale": "en",
+            "issues": [],
+            "textCount": 21
+          },
+          {
+            "locale": "uk",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "es",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "pt-br",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "fr",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "de",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "it",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "id",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "ja",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "ko",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "tr",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "vi",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "th",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "zh-hans",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "zh-hant",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "ar",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "hi",
+            "issues": [],
+            "textCount": 37
+          }
+        ],
+        "screen": "result",
+        "viewport": "1179, 819"
+      },
+      "waiting.final": {
+        "gameplayUnchanged": true,
+        "device": "hd_1080",
+        "locales": [
+          {
+            "locale": "en",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "uk",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "es",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "pt-br",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "fr",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "de",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "it",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "id",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "ja",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "ko",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "tr",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "vi",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "th",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "zh-hans",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "zh-hant",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "ar",
+            "issues": [],
+            "textCount": 37
+          },
+          {
+            "locale": "hi",
+            "issues": [],
+            "textCount": 37
+          }
+        ],
+        "screen": "menu",
+        "viewport": "1919, 1079"
+      },
+      "daily.final": {
+        "gameplayUnchanged": true,
+        "device": "hd_1080",
+        "locales": [
+          {
+            "locale": "en",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "uk",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "es",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "pt-br",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "fr",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "de",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "it",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "id",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "ja",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "ko",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "tr",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "vi",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "th",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "zh-hans",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "zh-hant",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "ar",
+            "issues": [],
+            "textCount": 60
+          },
+          {
+            "locale": "hi",
+            "issues": [],
+            "textCount": 60
+          }
+        ],
+        "screen": "prep",
+        "viewport": "1919, 1079"
+      },
+      "shift.final": {
+        "gameplayUnchanged": true,
+        "device": "hd_1080",
+        "locales": [
+          {
+            "locale": "en",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "uk",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "es",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "pt-br",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "fr",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "de",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "it",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "id",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "ja",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "ko",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "tr",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "vi",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "th",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "zh-hans",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "zh-hant",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "ar",
+            "issues": [],
+            "textCount": 52
+          },
+          {
+            "locale": "hi",
+            "issues": [],
+            "textCount": 52
+          }
+        ],
+        "screen": "prep",
+        "viewport": "1919, 1079"
+      },
+      "book": [
+        {
+          "locale": "en",
+          "issues": []
+        },
+        {
+          "locale": "uk",
+          "issues": []
+        },
+        {
+          "locale": "es",
+          "issues": []
+        },
+        {
+          "locale": "pt-br",
+          "issues": []
+        },
+        {
+          "locale": "fr",
+          "issues": []
+        },
+        {
+          "locale": "de",
+          "issues": []
+        },
+        {
+          "locale": "it",
+          "issues": []
+        },
+        {
+          "locale": "id",
+          "issues": []
+        },
+        {
+          "locale": "ja",
+          "issues": []
+        },
+        {
+          "locale": "ko",
+          "issues": []
+        },
+        {
+          "locale": "tr",
+          "issues": []
+        },
+        {
+          "locale": "vi",
+          "issues": []
+        },
+        {
+          "locale": "th",
+          "issues": []
+        },
+        {
+          "locale": "zh-hans",
+          "issues": []
+        },
+        {
+          "locale": "zh-hant",
+          "issues": []
+        },
+        {
+          "locale": "ar",
+          "issues": []
+        },
+        {
+          "locale": "hi",
+          "issues": []
+        }
+      ],
+      "record": [
+        {
+          "locale": "en",
+          "issues": []
+        },
+        {
+          "locale": "uk",
+          "issues": []
+        },
+        {
+          "locale": "es",
+          "issues": []
+        },
+        {
+          "locale": "pt-br",
+          "issues": []
+        },
+        {
+          "locale": "fr",
+          "issues": []
+        },
+        {
+          "locale": "de",
+          "issues": []
+        },
+        {
+          "locale": "it",
+          "issues": []
+        },
+        {
+          "locale": "id",
+          "issues": []
+        },
+        {
+          "locale": "ja",
+          "issues": []
+        },
+        {
+          "locale": "ko",
+          "issues": []
+        },
+        {
+          "locale": "tr",
+          "issues": []
+        },
+        {
+          "locale": "vi",
+          "issues": []
+        },
+        {
+          "locale": "th",
+          "issues": []
+        },
+        {
+          "locale": "zh-hans",
+          "issues": []
+        },
+        {
+          "locale": "zh-hant",
+          "issues": []
+        },
+        {
+          "locale": "ar",
+          "issues": []
+        },
+        {
+          "locale": "hi",
+          "issues": []
+        }
+      ]
+    },
+    "automaticAndFallback": {
+      "auto": true,
+      "unknownFallback": true
+    },
+    "picker": {
+      "languageButtons": 17,
+      "issues": []
+    },
+    "finalSmoke": {
+      "automatic": true,
+      "brandFontPreserved": true
+    },
+    "input": "Actual mouse down/up used to open languages, recipe book, record card and choose Automatic; locale sweeps set a client-only attribute.",
+    "coverage": "Not every screen was tested on every device. Final title-numbering edits were followed by all-locale desktop menu and catalog runtime checks."
+  },
+  "marketing": {
+    "localizedTitlesAndDescriptions": 17,
+    "copy": "assets/marketing/localization/store-copy.json",
+    "englishPreviews": [
+      "assets/marketing/preview-gameplay-en-1920x1080.png",
+      "assets/marketing/preview-oven-en-1920x1080.png"
+    ],
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "kind": "Actual Studio gameplay, only resampled for PNG export; visually inspected.",
+    "ukrainianPreviewHashesBefore": [
+      "dc916af7bac8d3c95074de179994fd05eea13441fc2c72c833d36e518ca6263b  assets/marketing/preview-gameplay-1920x1080.png",
+      "ce6eb133e20b7792bd0984479d56c2b50fb82bae8157202837621fc7b94df7dc  assets/marketing/preview-oven-1920x1080.png"
+    ],
+    "ukrainianPreviewsUnchanged": true
+  },
+  "build": {
+    "embeddedScriptsVerifiedByteForByte": 28,
+    "sceneInstances": 840,
+    "identicalRootAndDist": true,
+    "studioStopped": true,
+    "deviceSimulationStopped": true
+  },
+  "limits": {
+    "newRealMultiClientMatch": false,
+    "liveDataStoreAccess": false,
+    "nativeSpeakerReviewAllLanguages": false,
+    "fullPortraitPhoneMatrix": false
+  },
+  "sourceHashes": {
+    "src/client/PizzaClient.client.luau": "77f6b1ac214cf7d17c7dc4b4a43bf1ff57e99ee19167f6b84bc833c55b83eb7f",
+    "src/server/GameServer.server.luau": "d599c50e54b8d5734e7db766d8d11eb8e02aee1c45cc661fff49d5bae324faf2",
+    "src/server/ProfileStore.luau": "c6d6ad63938f749dd397c58d7e2d2f052fb8d83f0041a335faae63df3ef0a102",
+    "src/shared/Cooking.luau": "da5e49abc4953b23ed60ed2708377755a5bf35fca2a0dcd9924d3efd384bf611",
+    "src/shared/GameRules.luau": "d97996d3cf140d5a324eb35d761ec2d1769f48f48af6d8130520772c74d3a118",
+    "src/shared/IngredientArt.luau": "071a96b9627058637956bd4aab333bc956b0937ad0de63228f12c1be8e26d7e1",
+    "src/shared/IngredientPixels.luau": "a8cbe079f1e2b8dbabdcb731c80e4a533dbc9a91358ebceb0acab4fc6e8b59e7",
+    "src/shared/LocaleCatalog.luau": "b07065a0758251f9dd451920f1fcf84a738a738b66866c6324d1d6a9322d208f",
+    "src/shared/Locale_ar.luau": "03d078a973321514325f099fa19a51735b91a5bb00aa7b3349dd9bbfd836d57e",
+    "src/shared/Locale_de.luau": "ec1adc4328f3b562bc988400ce52cd64f0382ffc3706b38f9ff70b2ab98d82e4",
+    "src/shared/Locale_en.luau": "4aebfae5a62cc8ee35f03d8d3215dfd3c9fae73fce4ec67b7a5b4c0a9eff1d9d",
+    "src/shared/Locale_es.luau": "019297b720cefc5a1d9ce4c235b6c60b05ebe9e7c753e5b8c7366d6723e10934",
+    "src/shared/Locale_fr.luau": "a6744b1d6fac8fa9c88c0a9ff8a469bb7767a51992ae04d96ee7c0c20b48a777",
+    "src/shared/Locale_hi.luau": "470f080a2d1eef6b0af16520a2f8ad754b1b053acf7562955619d8c9f7d25fb3",
+    "src/shared/Locale_id.luau": "2b3d875b007f9d7d317bdbed9e9d6da359ab14a83e37587f6cd99d17c72d751b",
+    "src/shared/Locale_it.luau": "a4515ffb52ef11c237c2e0fee99ab9124574ca7b11ebb6a9d8435b66af64a314",
+    "src/shared/Locale_ja.luau": "d428ce61ef6fcbc264dc0b9ce42e5f84cab77de7102a1bd202aa18cfa7e06f77",
+    "src/shared/Locale_ko.luau": "b562c525ffaf19a1c6cf1389a5dd14ae741dfbf023b1c9ae47848f277d504ea7",
+    "src/shared/Locale_pt_br.luau": "53c91f31800491ae23612bf905a9f95e93f0c6710620d8488483ffd81a7fd589",
+    "src/shared/Locale_th.luau": "c320f1ca8c315efb84725860e82aac3606136399cd0c79d57ca08b2534bbddb3",
+    "src/shared/Locale_tr.luau": "88965ca80cd85a8f413617a1c75b7dcb2267c9413a2c88fc02f3335c63eb9ccf",
+    "src/shared/Locale_uk.luau": "3ac17e69e95ec68543b2eca67f1e7ef136f14d43253b9efb8c9bdace64d44c1e",
+    "src/shared/Locale_vi.luau": "50af10d986fc0c3daec1b0d7cb59020e007db53d531bcee0b45774f4808a92fc",
+    "src/shared/Locale_zh_hans.luau": "005a407df0f327af6fd30c1e89b58f4c2dab0ab33637b9a4de54d626e69de434",
+    "src/shared/Locale_zh_hant.luau": "5f5f26fa853baf706436e8aef21266b04a2a1d6bd57f1214fa12e286f7b740fa",
+    "src/shared/Localization.luau": "d4eee9fdb64f38670d12c2ef8463ea83021c9e8da1f1452841ca24f4fa0b609f",
+    "src/shared/Recipes.luau": "914858c1aecf9436f58e983552b62a9a6176eca432e9653f41556fe12e4f767f",
+    "src/studio/BuildWorld.luau": "595e624eca4f512435bb910aa5ef688f029c321e8fb7756da7ce152b2ba3cd90",
+    "localization/ar.json": "29ac916d28dc512536801a21b1dd24af88b355a08ee9b9ffc8b11f845fbf05a6",
+    "localization/de.json": "a721da265cc7fc63754dd0982d4d2eecbc45e6f716171120e1ae086b3e90d911",
+    "localization/en.json": "db490c11fa789a46026923594b1f7ad6f8d4c39f809be09c826026c8b64b2656",
+    "localization/es.json": "e9b6d9814034be67031f2130a5edbe84cab6664cfb43f5d6b1284c86a1a529bf",
+    "localization/fr.json": "10f03045424273f665951e8d4560a8cd6caebc3eac0111a58d0d7e7314250a95",
+    "localization/hi.json": "5370aae6e76f23c96398ccd85aad11742b36ac444a46cd1b7aba0b060611702e",
+    "localization/id.json": "604fefa54a6657e9c3f40ee56a92db795c5eb9f27ff408bf41e9f8714bf25f16",
+    "localization/it.json": "288c3b526571438d0d66e34e0b8f57b48ea9817a0baaaf649675c568002f1bcb",
+    "localization/ja.json": "75acbdba13bb1eb86e7a9fd0f21d73ff53e77222f222730e1606f03cad5dcf0c",
+    "localization/ko.json": "3506c21ac5ac0728bf8e0dfd4e884db3b46b3a7b1626be9cc0bf5952e4306429",
+    "localization/pt-br.json": "2d106991b2dcf18ea2cad04ce457cbcbc5c4f817c37e49e6e083b4088e9ac92d",
+    "localization/th.json": "a65882ee687d467eee4fc7c9897e7895f5440eb0a23a1d631b08806db9cd5b3d",
+    "localization/tr.json": "e19d143406b112a0d65dbf098b089a875726a69a423a3e888f6ed49ac93f2ba9",
+    "localization/uk.json": "165ab583d3797dc7fcee236c26e29dd9255bc382b188510d19a31ee7cbd1ac26",
+    "localization/vi.json": "d2ae2e465fea4b21d5d384533df1f35fa44fc3ee34b52b63f0569a2f2f1ceb29",
+    "localization/zh-hans.json": "8868f3303a19172fd8b04d9fc64563c6341d97f4dc2a96cdb318c9fbb41c1a23",
+    "localization/zh-hant.json": "9e11c3323ae5c5bfee82db949f1ba923ba7db6a877827d9fb6e0cf14eeefb66f",
+    "scripts/build_locales.py": "e02ee50c8900b428267e7580a6492a59dad7fc7cb98168b7a4693589cd4c32b6",
+    "scripts/build_place.py": "afa4d6060d3bcb6a6072b8db3b11b1a64a77cd7e1f5b4018604acee3814ec9dd",
+    "scripts/export_marketing.py": "dcc7edd825ca47bdae75d8d33204a95ffe01e424ccdf401a56772010993c1e32",
+    "scripts/export_store_copy.py": "a5a6b7790d0fdfdfc76279154736b6a1ac947ee2fecd67b6438f7b89b16de020",
+    "assets/marketing/localization/store-copy.json": "32319b6bbdc85b729fa8e8948f202f272b9cee31f1f10224ff607758f1b21e4c"
+  },
+  "artifacts": {
+    "PizzaChief.rbxlx": {
+      "sha256": "723312bfe7da48c6ce22c0755a3fd8ff6c48a528ccc994d295403cc6f9caa601",
+      "bytes": 1268980
+    },
+    "dist/PizzaChief.rbxlx": {
+      "sha256": "723312bfe7da48c6ce22c0755a3fd8ff6c48a528ccc994d295403cc6f9caa601",
+      "bytes": 1268980
+    },
+    "assets/marketing/game-icon-1024.png": {
+      "sha256": "9f7f82dc83164b656bdad8bd866a60decf6598fe917104999406d1d818ef851b",
+      "bytes": 1684905
+    },
+    "assets/marketing/game-icon-512.png": {
+      "sha256": "acdf49c3bc9aab5d4d886f303f9e45a46d8e7589aa672276f45550ec42448462",
+      "bytes": 464872
+    },
+    "assets/marketing/preview-gameplay-1920x1080.png": {
+      "sha256": "dc916af7bac8d3c95074de179994fd05eea13441fc2c72c833d36e518ca6263b",
+      "bytes": 1077070
+    },
+    "assets/marketing/preview-gameplay-en-1920x1080.png": {
+      "sha256": "648ba951a7639b138a57f14625ba1e8be6a89ed29b1372718a16df77860ae03e",
+      "bytes": 1028613
+    },
+    "assets/marketing/preview-oven-1920x1080.png": {
+      "sha256": "ce6eb133e20b7792bd0984479d56c2b50fb82bae8157202837621fc7b94df7dc",
+      "bytes": 1114434
+    },
+    "assets/marketing/preview-oven-en-1920x1080.png": {
+      "sha256": "1dd1ea288364e702be134181016f1c82075ceea91fcb8090536dd31e1259db01",
+      "bytes": 1055197
+    },
+    "assets/marketing/thumbnail-hero-1920x1080.png": {
+      "sha256": "ba625c450c1294d07210817478a80737e36e78c8a8e4b73c1bb3633a067901f1",
+      "bytes": 2891833
+    },
+    "screenshots/localization/daily-hi.jpg": {
+      "sha256": "02beeb6e23059bdc0b72775df8a81731428267662638776f5644e74210d7dd76",
+      "bytes": 243965
+    },
+    "screenshots/localization/language-picker.jpg": {
+      "sha256": "301ffa575640442b10839576e4fa8f55cf5f1934e776671c7f42c4e55afe2876",
+      "bytes": 218639
+    },
+    "screenshots/localization/menu-ar-before-bidi-fix.jpg": {
+      "sha256": "ae917c074737ab974cc6209041086aea252e4eeab5834b404310b97700000331",
+      "bytes": 248403
+    },
+    "screenshots/localization/menu-ar.jpg": {
+      "sha256": "3a0cdd901e9eeb643a92eef30b92117db326ba828c54bfaad00f997804e37d49",
+      "bytes": 244962
+    },
+    "screenshots/localization/menu-en.jpg": {
+      "sha256": "71d3d5175b405c2dfe46b4e94155e174f58fd4afcd1bf7961d57a198e91ad86d",
+      "bytes": 319261
+    },
+    "screenshots/localization/menu-th.jpg": {
+      "sha256": "08d2f2f51f5c3c43cd81705fb1f4bd5873a9e634a1c459194e3432b29eb1907f",
+      "bytes": 252796
+    },
+    "screenshots/localization/menu-uk.jpg": {
+      "sha256": "142b3a6771472b09715a3eb7744eec1297bb191c0cb52caf6b3f716b883fe8f6",
+      "bytes": 298623
+    },
+    "screenshots/localization/menu-zh-hant.jpg": {
+      "sha256": "3c7ec885e4042f974c5d3dc42cb3d0bf5aa3600cf3d8c7f8a5f6340ea63e353c",
+      "bytes": 253024
+    },
+    "screenshots/localization/ready-ar.jpg": {
+      "sha256": "57ad9bcb052885715067bc522759470ca9075410d65a4fb545b3b304e21af27e",
+      "bytes": 262229
+    },
+    "screenshots/localization/result-ja.jpg": {
+      "sha256": "02fd5c104a6a691d87e79c17e287b17fe6b54e4b342356d309b28b88ad213b4f",
+      "bytes": 272330
+    }
+  }
+}
